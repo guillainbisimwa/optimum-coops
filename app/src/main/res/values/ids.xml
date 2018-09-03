@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="materialviewpager_pagerTitleStrip" type="id" />
+    <item name="materialviewpager_imageHeader" type="id" />
+    <item name="materialviewpager_headerImageDarkLayer" type="id" />
+    <item name="materialviewpager_viewpager" type="id" />
+    <item name="plantation_layout" type="id">plantation_layout</item>
+    <item name="domaine_layout" type="id">domaine_layout</item>
+    <item name="employeur_layout" type="id">employeur_layout</item>
+    <item name="entreprise_layout" type="id">entreprise_layout</item>
+</resources>

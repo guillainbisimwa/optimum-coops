@@ -1,0 +1,31 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- FROM MATERIAL VIEW PAGER -->
+    <dimen name="materialviewpager_logoHeight">35dp</dimen>
+    <dimen name="cardMarginHorizontal">10dp</dimen>
+    <dimen name="cardMarginVertical">8dp</dimen>
+
+
+    <dimen name="tite_item">16sp</dimen>
+
+
+    <dimen name="login_button_radius">30dp</dimen>
+    <dimen name="login_button_height">60dp</dimen>
+    <dimen name="login_button_width">300dp</dimen>
+    <dimen name="login_holder_height">25dp</dimen>
+    <dimen name="login_horizontalline_spacing">10dp</dimen>
+
+    <!--product-->
+    <dimen name="md_keylines">8dp</dimen>
+    <dimen name="card_image_height">100dp</dimen>
+
+
+    <dimen name="list_item_extra_padding">0dp</dimen>
+    <dimen name="list_icon">40dp</dimen>
+
+</resources>

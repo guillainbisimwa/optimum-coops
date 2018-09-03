@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".agri.addAgriculteurs">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/login_progress_insc"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:visibility="gone" />
+
+        <!-- <RelativeLayout
+             android:id="@+id/toolbar_layout"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+             <android.support.v7.widget.Toolbar
+                 android:id="@+id/toolbar2"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:fitsSystemWindows="true"
+                 style="@style/AppTheme2"
+                 app:navigationIcon="?android:attr/homeAsUpIndicator"
+                 android:minHeight="?android:attr/actionBarSize"
+                 />
+
+         </RelativeLayout>-->
+
+        <!-- Login progress
+        android:theme="@style/MVP_AppTheme.ActionBarTheme"-->
+
+        <ScrollView
+            android:id="@+id/login_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/form_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:addStatesFromChildren="false"
+                    android:alwaysDrawnWithCache="false"
+                    android:gravity="center"
+                    android:padding="20sp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/sign_in"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/inscrivez_vous"
+                                android:textColor="@color/grey_600"
+                                android:textSize="38sp" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="30sp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/nom_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/nom"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/postnom_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/prenom"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/phone_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/phone"
+                                        android:inputType="phone"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+
+                                <LinearLayout
+                                    android:id="@+id/radio_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/sexe"
+                                        android:textColor="@color/grey_600"
+                                        android:textSize="16sp" />
+
+                                    <RadioGroup
+                                        android:id="@+id/gender_group_insc"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <RadioButton
+                                            android:id="@+id/radio_male_insc"
+                                            style="@style/AppBaseTheme"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:checked="true"
+                                            android:text="@string/homme"
+                                            android:textColor="@color/grey_600"
+                                            android:textColorHighlight="@color/grey_300"
+                                            android:textColorHint="@color/grey_300"
+                                            android:textColorLink="@color/grey_300"
+                                            android:textStyle="bold" />
+
+                                        <RadioButton
+                                            android:id="@+id/radio_female_insc"
+                                            style="@style/AppTheme2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:checked="false"
+                                            android:text="@string/femme"
+                                            android:textColor="@color/grey_600"
+                                            android:textColorHighlight="@color/grey_300"
+                                            android:textColorHint="@color/grey_300"
+                                            android:textColorLink="@color/grey_300"
+                                            android:textStyle="bold" />
+                                    </RadioGroup>
+
+                                </LinearLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/mots_de_passe_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/password"
+                                        android:inputType="textPassword"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/mots_de_passe_conf_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/password_confirm"
+                                        android:inputType="textPassword"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/adresse_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/adresse"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/plantation_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/dimension_champs"
+                                        android:inputType="numberDecimal"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/spiner_layout_cour"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:paddingTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/cours_d_eau"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textSize="16sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_cours_eau_insc"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:theme="@style/themeSpinner_inv" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/validation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:paddingTop="10dp">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/etat"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textSize="16sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_validation"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:theme="@style/themeSpinner_inv" />
+
+                                    <LinearLayout
+                                        android:id="@+id/spiner_layout_chef_grp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:paddingTop="10dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:text="@string/chef_group"
+                                            android:textColor="@color/grey_600"
+                                            android:textColorHighlight="@color/grey_300"
+                                            android:textColorHint="@color/grey_300"
+                                            android:textSize="16sp" />
+
+                                        <Spinner
+                                            android:id="@+id/spinner_chef_group"
+                                            style="@style/Widget.AppCompat.Spinner.Underlined"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:theme="@style/themeSpinner_inv" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/bottom_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <Button
+                                android:id="@+id/inscription_button_insc"
+                                style="?android:attr/buttonBarButtonStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="1.0"
+                                android:background="@drawable/rounded_button"
+                                android:text="@string/inscrivez_vous"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#FFFFFF" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        android:paddingTop="20dp"
+        app:navigationIcon="?android:attr/homeAsUpIndicator" />
+
+    <!--<android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:paddingTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="?android:attr/homeAsUpIndicator"
+        android:minHeight="?android:attr/actionBarSize">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/inscrivez_vous"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/toolbar_title"
+                android:textColor="@color/grey_200"
+                android:layout_marginRight="16dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/image"/>
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>-->
+
+    <!--v\\
+
+            style="@style/Widget.AppCompat.Toolbar.Button.Navigation
+            android:minHeight="?android:attr/actionBarSize"
+    -->
+</RelativeLayout>

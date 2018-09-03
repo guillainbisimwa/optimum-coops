@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/identite_inscr_agri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30sp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/content_spiner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/spiner_coop_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/Type"
+                                android:textColor="@color/grey_600"
+                                android:textColorHighlight="@color/grey_200"
+                                android:textColorHint="@color/grey_200"
+                                android:textSize="16sp" />
+
+                            <Spinner
+                                android:id="@+id/spinner_type"
+                                style="@style/Widget.AppCompat.Spinner.Underlined"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:theme="@style/themeSpinner_inv" />
+
+                        </LinearLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:textColorHint="@color/grey_300">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/nom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/nom"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textColor="@color/grey_600"
+                                android:textColorHighlight="@color/grey_300"
+                                android:textColorHint="@color/grey_300" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:textColorHint="@color/grey_300">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/postnom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="auto"
+                                android:hint="@string/prenom"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textColor="@color/grey_600"
+                                android:textColorHighlight="@color/grey_300"
+                                android:textColorHint="@color/grey_300"
+                                android:textColorLink="@color/accent_color"
+                                android:theme="@style/AppTheme" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:textColorHint="@color/grey_300">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="auto"
+                                android:hint="@string/phone"
+                                android:inputType="phone"
+                                android:maxLines="1"
+                                android:textColor="@color/grey_600"
+                                android:textColorHighlight="@color/grey_300"
+                                android:textColorHint="@color/grey_300"
+                                android:textColorLink="@color/grey_300"
+                                android:theme="@style/AppTheme" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/radio_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView23"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/sexe"
+                                android:textColor="@color/grey_600"
+                                android:textSize="16sp" />
+
+                            <RadioGroup
+                                android:id="@+id/gender_group"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <RadioButton
+                                    android:id="@+id/radio_male"
+                                    style="@style/AppBaseTheme"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:text="@string/homme"
+                                    android:textColor="@color/grey_600"
+                                    android:textColorHighlight="@color/grey_300"
+                                    android:textColorHint="@color/grey_300"
+                                    android:textColorLink="@color/grey_300"
+                                    android:textStyle="bold" />
+
+                                <RadioButton
+                                    android:id="@+id/radio_female"
+                                    style="@style/AppBaseTheme"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:checked="false"
+                                    android:text="@string/femme"
+                                    android:textColor="@color/grey_600"
+                                    android:textColorHighlight="@color/grey_300"
+                                    android:textColorHint="@color/grey_300"
+                                    android:textColorLink="@color/grey_300"
+                                    android:textStyle="bold" />
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:textColorHint="@color/grey_300">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/mots_de_passe"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="auto"
+                                android:hint="@string/password"
+                                android:inputType="textPassword"
+                                android:maxLines="1"
+                                android:textColor="@color/grey_600"
+                                android:textColorHighlight="@color/grey_300"
+                                android:textColorHint="@color/grey_300"
+                                android:textColorLink="@color/accent_color"
+                                android:theme="@style/AppTheme" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/localisation_inscr_agri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/center2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:textColorHint="@color/grey_300">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/nom2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/nom"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textColor="@color/grey_600"
+                                android:textColorHighlight="@color/grey_300"
+                                android:textColorHint="@color/grey_300" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

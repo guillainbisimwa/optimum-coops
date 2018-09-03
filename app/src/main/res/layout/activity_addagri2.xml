@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_200">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/title_incr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="TextView"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_inscr_agri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_incr"
+            android:layout_centerHorizontal="true"
+            android:padding="20dp"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="false"
+            app:contentPadding="4dp">
+
+            <com.asksira.loopingviewpager.LoopingViewPager
+                android:id="@+id/viewpager2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoScroll="false"
+                app:isInfinite="false"
+                app:scrollInterval="3000"
+                app:wrap_content="true" />
+
+        </android.support.v7.widget.CardView>
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_inscr_agri"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            app:piv_animationDuration="200"
+            app:piv_animationType="slide"
+            app:piv_interactiveAnimation="true"
+            app:piv_selectedColor="@color/accent_color"
+            app:piv_unselectedColor="@color/grey_600" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/indicator"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_prev"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/rounded_button"
+                android:text="p"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/button_save"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/rounded_button"
+                android:text="@string/inscrivez_vous"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/button_next"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/rounded_button"
+                android:text="n"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

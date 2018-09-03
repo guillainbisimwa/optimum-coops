@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".Registration">
+
+    <!-- Login progress -->
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.flaviofaria.kenburnsview.KenBurnsView
+            android:id="@+id/fragmentloginKenBurnsView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/plant2" />
+
+        <View
+            android:id="@+id/fragmentloginView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha=".7"
+            android:background="#000000" />
+
+        <ProgressBar
+            android:id="@+id/login_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:visibility="gone" />
+
+        <ScrollView
+            android:id="@+id/login_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/form_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:addStatesFromChildren="false"
+                    android:alwaysDrawnWithCache="false"
+                    android:gravity="center"
+                    android:padding="20sp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/sign_in"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/inscrivez_vous"
+                                android:textColor="@color/white"
+                                android:textSize="38sp" />
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="30sp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/content_spiner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/spiner_coop_txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/Type"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_200"
+                                        android:textColorHint="@color/grey_200"
+                                        android:textSize="16sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_type"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:theme="@style/themeSpinner" />
+
+                                </LinearLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/nom"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/nom"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/postnom"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/prenom"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/phone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/phone"
+                                        android:inputType="phone"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/grey_200"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+
+                                <LinearLayout
+                                    android:id="@+id/radio_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/textView23"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/sexe"
+                                        android:textColor="@color/grey_200"
+                                        android:textSize="16sp" />
+
+                                    <RadioGroup
+                                        android:id="@+id/gender_group"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <RadioButton
+                                            android:id="@+id/radio_male"
+                                            style="@style/AppBaseTheme"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:checked="true"
+                                            android:text="@string/homme"
+                                            android:textColor="@color/white"
+                                            android:textColorHighlight="@color/white"
+                                            android:textColorHint="@color/white"
+                                            android:textColorLink="@color/white"
+                                            android:textStyle="bold" />
+
+                                        <RadioButton
+                                            android:id="@+id/radio_female"
+                                            style="@style/AppBaseTheme"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:checked="false"
+                                            android:text="@string/femme"
+                                            android:textColor="@color/white"
+                                            android:textColorHighlight="@color/white"
+                                            android:textColorHint="@color/white"
+                                            android:textColorLink="@color/white"
+                                            android:textStyle="bold" />
+                                    </RadioGroup>
+
+                                </LinearLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/mots_de_passe"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/password"
+                                        android:inputType="textPassword"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/mots_de_passe_conf"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/password_confirm"
+                                        android:inputType="textPassword"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/adresse"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/adresse"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:id="@id/plantation_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/plantation"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/dimension_champs"
+                                        android:inputType="numberDecimal"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:id="@id/domaine_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/domaine"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/domaine"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:id="@id/employeur_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/employeur"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/employeur"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:id="@id/entreprise_layout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_200">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/entreprise"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/entreprise"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textColorLink="@color/accent_color"
+                                        android:theme="@style/AppTheme" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/spiner_layout_cour"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:paddingTop="10dp"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:id="@+id/text_cours_eau"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/cours_d_eau"
+                                        android:textColor="@color/grey_200"
+                                        android:textColorHighlight="@color/grey_200"
+                                        android:textColorHint="@color/grey_200"
+                                        android:textSize="16sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_cours_eau"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:theme="@style/themeSpinner" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/bottom_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <Button
+                                android:id="@+id/inscription_button"
+                                style="?android:attr/buttonBarButtonStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="1.0"
+                                android:background="@drawable/rounded_button"
+                                android:text="@string/inscrivez_vous"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#FFFFFF" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <!--<LinearLayout
+                    android:id="@+id/registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_vertical"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5sp"
+                        android:text="@string/have_account"
+                        android:textColor="@color/psts_background_tab_pressed_ripple"
+                        android:textSize="14sp" />
+                </LinearLayout>-->
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </android.support.percent.PercentRelativeLayout>
+</LinearLayout>

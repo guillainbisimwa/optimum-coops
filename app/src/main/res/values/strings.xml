@@ -1,0 +1,204 @@
+<resources>
+
+
+    <string name="app_name">Optimum Coops</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="agriculteurs">Agriculteurs</string>
+    <string name="utilisateurs">Utilisateurs</string>
+    <string name="utilisateur">Utilisateur</string>
+    <string name="agriculteur">Agriculteur</string>
+    <string name="groupes">Groupes</string>
+    <string name="groupe">Groupe</string>
+    <string name="cooperatives">Cooperatives</string>
+    <string name="dealers">Dealers</string>
+    <string name="acheteur">Acheteur</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">guy@io.com</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="home">Home</string>
+    <string name="credit">Credit</string>
+    <string name="cafe">Cafe produit</string>
+    <string name="parametre">Parametre</string>
+    <string name="configuration">configuration</string>
+    <string name="apropos">Apropos</string>
+    <string name="conexion">Connexion</string>
+    <string name="deconexion">Deconnexion</string>
+    <string name="title_activity_login">Connection</string>
+
+    <string name="modification">Modifier</string>
+    <string name="connecte_vs">Connectez-vous</string>
+    <string name="have_account">Avez-vous un compte?</string>
+    <string name="erreur_connexion">Erreur de connexion</string>
+    <string name="erreur_password_phone">Erreur de connexion, Numero ou mots de passe incorects</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Mots de passe (optionel)</string>
+    <string name="action_sign_in">Se connecter</string>
+    <string name="action_sign_in_short">Connexion</string>
+    <string name="error_invalid_email">Ce mail est invalide</string>
+    <string name="error_invalid_phone">Ce numero est invalide</string>
+    <string name="error_invalid_password">Mots de passe trop court</string>
+    <string name="error_incorrect_password">Mots de passe incorrect</string>
+    <string name="error_field_required">Champs obligatoire</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="inf0_agri">Information de l\'utilisateur</string>
+
+    <!--text intro-->
+    <string name="item1_titre">Optimum Coops</string>
+    <string name="item2_titre">Vos produits</string>
+    <string name="item3_titre">Finance</string>
+
+    <string name="item1_content">Application de gestion de votre business .</string>
+    <string name="item2_content">Un vrais outils federateur pour toutes les filieres </string>
+    <string name="item3_content">Profiter de vos transactions financieres en toute securite</string>
+    <string name="title_activity_add_agriculteurs">Ajouter utilisateur</string>
+    <string name="title_activity_edit_agriculteurs">Modifier Agriculteur</string>
+    <string name="need_account">Besoin d\'un compte?</string>
+    <string name="registrer_here">Inscrivez-vous</string>
+
+
+    <!-- Preference for app token -->
+    <string name="application_key" translatable="false">app</string>
+    <string name="app_key" translatable="false">app_key</string>
+    <string name="app_refresh_token" translatable="false">app_refresh_token</string>
+    <string name="g_name" translatable="false">g_name</string>
+    <string name="server_id" translatable="false">server_id</string>
+    <string name="agri_id" translatable="false">agri_id</string>
+    <string name="vendeur_id" translatable="false">vendeur_id</string>
+    <string name="group_id" translatable="false">group_id</string>
+    <string name="dealer_id" translatable="false">dealer_id</string>
+    <string name="app_id" translatable="false">appId</string>
+    <string name="install_app_id" translatable="false">Install app id</string>
+    <string name="user_name">uname</string>
+    <string name="user_phone">uphone</string>
+    <string name="user_password">upassword</string>
+    <string name="user_server_id">userServerId</string>
+    <string name="connectivity_error">Desole,  vous n\'etes pas connecter , veiller verifier votre connection internet</string>
+
+    <!--ENREGISTRATION-->
+    <string name="inscrivez_vous">Inscription</string>
+    <!-- AGRICULTEURS-->
+    <string name="nom">Nom</string>
+    <string name="prenom">Prenom</string>
+    <string name="phone">Telephone</string>
+    <string name="password">Mots de passe</string>
+    <string name="password_confirm">Confirmer mots de passe</string>
+    <string name="sexe">Sexe</string>
+    <string name="adresse">Adresse</string>
+    <string name="dimension_champs">Plantation(Dimension en H)</string>
+    <string name="domaine">Domaine du commerce</string>
+    <string name="employeur">Quel est votre employeur?</string>
+    <string name="entreprise">Quel est votre entreprise?</string>
+    <string name="cours_d_eau">Cours d\'eau le plus proche</string>
+    <string name="Type">Type d\'Utilisateur: </string>
+    <string name="homme">Homme</string>
+    <string name="femme">Femme</string>
+    <string name="error_invalid_length">3 caracteres au minimum</string>
+    <string name="error_invalid_adress">4 caracteres au minimum</string>
+    <string name="etat">Etat de validation</string>
+    <string name="chef_group">Chef du groupe</string>
+
+    <string-array name="type_users">
+        <item>Agriculteur</item>
+        <item>Petit commercant</item>
+        <item>Employer</item>
+        <item>Entrepreneur</item>
+        <item>Acheteur</item>
+        <item>Dealer</item>
+    </string-array>
+
+    <string-array name="etat_array">
+        <item>Non</item>
+        <item>Oui</item>
+    </string-array>
+
+
+    <string-array name="cours_d_eau_array">
+        <item>Ruzizi 1</item>
+        <item>Ruzizi 2</item>
+        <item>Lowa</item>
+        <item>Maiko</item>
+        <item>Elila</item>
+        <item>Lukuga</item>
+    </string-array>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+</resources>
