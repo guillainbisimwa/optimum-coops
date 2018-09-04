@@ -20,6 +20,7 @@ import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.weza_lab.benenfance.optimumcoops.agri.EditAgriculteurs;
 import com.weza_lab.benenfance.optimumcoops.agri.addAgriculteurs;
 import com.weza_lab.benenfance.optimumcoops.agri.details_agri.DetailsAgriRecyclerViewFrgmnt;
+import com.weza_lab.benenfance.optimumcoops.credit.Main_credit;
 import com.weza_lab.benenfance.optimumcoops.fragment.AchRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.CoopRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.DealRecyclerViewFragment;
@@ -288,7 +289,12 @@ public class MainActivity extends DrawerActivity {
             // Handle actions
             Toast.makeText(this, "Clic  Home", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.credit) {
-            Toast.makeText(getApplicationContext(), "Clic  credit", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, Main_credit.class);
+            i.putExtra("mPhone", mPhone);
+            i.putExtra("mName", uName);
+            i.putExtra("mType", user_categorie);
+            this.startActivity(i);
+
         } else if (id == R.id.cafe) {
             Toast.makeText(this, "Clic  cafe", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.parametre) {

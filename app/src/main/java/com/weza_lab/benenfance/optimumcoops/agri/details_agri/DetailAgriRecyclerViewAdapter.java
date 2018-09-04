@@ -128,7 +128,7 @@ public class DetailAgriRecyclerViewAdapter extends RecyclerView.Adapter<DetailAg
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            //Toast.makeText(mContext,"Click Item: "+position,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext,"Click Item: "+position,Toast.LENGTH_SHORT).show
             //mContext.startActivity(new Intent(mContext,Details_agri.class ));
         }
 

@@ -12,6 +12,7 @@
     <string name="groupes">Groupes</string>
     <string name="groupe">Groupe</string>
     <string name="cooperatives">Cooperatives</string>
+    <string name="cooperative">Cooperative</string>
     <string name="dealers">Dealers</string>
     <string name="acheteur">Acheteur</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -21,6 +22,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="home">Home</string>
     <string name="credit">Credit</string>
+    <string name="credits">Les credits</string>
+    <string name="mes_credits">Mes credits</string>
     <string name="cafe">Cafe produit</string>
     <string name="parametre">Parametre</string>
     <string name="configuration">configuration</string>
@@ -67,6 +70,12 @@
     <string name="need_account">Besoin d\'un compte?</string>
     <string name="registrer_here">Inscrivez-vous</string>
 
+    <string name="montant">Montant en CDF</string>
+    <string name="echeance">Echeance en mois</string>
+    <string name="select_cooperative">Selectionner cooperative</string>
+    <string name="contract_credit">Demander credit</string>
+    <string name="motif">Motif de votre credit</string>
+
 
     <!-- Preference for app token -->
     <string name="application_key" translatable="false">app</string>
@@ -106,6 +115,7 @@
     <string name="femme">Femme</string>
     <string name="error_invalid_length">3 caracteres au minimum</string>
     <string name="error_invalid_adress">4 caracteres au minimum</string>
+    <string name="error_invalid_numbr">La valeur doit etre > 0</string>
     <string name="etat">Etat de validation</string>
     <string name="chef_group">Chef du groupe</string>
 
@@ -132,6 +142,14 @@
         <item>Elila</item>
         <item>Lukuga</item>
     </string-array>
+
+    <string-array name="coop_array">
+        <item>Cooperative 1</item>
+        <item>Cooperative 2</item>
+
+    </string-array>
+
+
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->

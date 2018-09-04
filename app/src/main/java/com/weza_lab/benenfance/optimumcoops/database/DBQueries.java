@@ -8,10 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.weza_lab.benenfance.optimumcoops.pojo.Agriculteurs;
+import com.weza_lab.benenfance.optimumcoops.pojo.Credit;
 import com.weza_lab.benenfance.optimumcoops.pojo.Employer;
 import com.weza_lab.benenfance.optimumcoops.pojo.Entrepreneurs;
+import com.weza_lab.benenfance.optimumcoops.pojo.Payment;
 import com.weza_lab.benenfance.optimumcoops.pojo.Personnes;
 import com.weza_lab.benenfance.optimumcoops.pojo.Petit_commercant;
+import com.weza_lab.benenfance.optimumcoops.pojo.Tranche;
 import com.weza_lab.benenfance.optimumcoops.pojo.Users;
 
 import java.util.ArrayList;
@@ -746,6 +749,232 @@ public class DBQueries {
             return return_;
         }
         return return_;
+    }
+
+    /**
+     * CREDIT INSERT AND SELECT
+     **/
+    public boolean insertCredit(Credit credit) {
+        ContentValues values = new ContentValues();
+        values.put(DBConstants.COLUMN_SOMME_CREDIT, credit.getSomme_credit());
+        values.put(DBConstants.COLUMN_PHONE_USER_CREDIT, credit.getPhone_user_credit());
+        values.put(DBConstants.COLUMN_TYPE_USER_CREDIT, credit.getType_user_credit());
+        values.put(DBConstants.COLUMN_TAUX_INTERET_CREDIT, credit.getTaux_credit());
+        values.put(DBConstants.COLUMN_ETAT_CREDIT, credit.getEtat_credit());
+        values.put(DBConstants.COLUMN_DATE_CREDIT, credit.getTimestamp());
+        values.put(DBConstants.COLUMN_HASH_CREDIT, credit.getHash());
+        values.put(DBConstants.COLUMN_PREVIOUS_HASH_CREDIT, credit.getPrevious_hash());
+        values.put(DBConstants.COLUMN_NONCE_CREDIT, credit.getNonce());
+        values.put(DBConstants.COLUMN_MOTIF_CREDIT, credit.getMotif_credit());
+        values.put(DBConstants.COLUMN_DUREE_CREDIT, credit.getDuree());
+        return database.insert(DBConstants.TABLE_NAME_CREDIT, null, values) > -1;
+    }
+
+    public ArrayList<Credit> readCredits() {
+        ArrayList<Credit> list = new ArrayList<>();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_CREDIT_QUERY, null);
+            list.clear();
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_CREDIT));
+                        long date = cursor.getLong(cursor.getColumnIndex(DBConstants.COLUMN_DATE_CREDIT));
+                        String hash = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_HASH_CREDIT));
+                        String previoushash = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PREVIOUS_HASH_CREDIT));
+                        int nonce = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_NONCE_CREDIT));
+                        float somme = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_SOMME_CREDIT));
+                        String phone = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PHONE_USER_CREDIT));
+                        int type = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_TYPE_USER_CREDIT));
+                        int etat = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ETAT_CREDIT));
+                        float taux = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_TAUX_INTERET_CREDIT));
+                        String motif = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_MOTIF_CREDIT));
+                        int duree = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_DUREE_CREDIT));
+
+                        Credit c = new Credit(id, date, hash, previoushash, nonce, somme, phone, type, etat, taux, motif, duree);
+                        list.add(c);
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return list;
+    }
+
+    public ArrayList<Credit> readOneCredits(String phone_) {
+        ArrayList<Credit> list = new ArrayList<>();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_CREDIT_QUERY, null);
+            list.clear();
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_CREDIT));
+                        long date = cursor.getLong(cursor.getColumnIndex(DBConstants.COLUMN_DATE_CREDIT));
+                        String hash = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_HASH_CREDIT));
+                        String previoushash = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PREVIOUS_HASH_CREDIT));
+                        int nonce = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_NONCE_CREDIT));
+                        float somme = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_SOMME_CREDIT));
+                        String phone = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PHONE_USER_CREDIT));
+                        int type = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_TYPE_USER_CREDIT));
+                        int etat = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ETAT_CREDIT));
+                        float taux = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_TAUX_INTERET_CREDIT));
+                        String motif = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_MOTIF_CREDIT));
+                        int duree = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_DUREE_CREDIT));
+
+                        if (phone.equals(phone_)) {
+                            Credit c = new Credit(id, date, hash, previoushash, nonce, somme, phone, type, etat, taux, motif, duree);
+                            list.add(c);
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return list;
+    }
+
+    /**
+     * PAYMENT INSERT AND SELECT
+     **/
+    public boolean insertPayment(Payment payment) {
+        ContentValues values = new ContentValues();
+        values.put(DBConstants.COLUMN_SOMME_PAYMENT, payment.getSomme_payment());
+        values.put(DBConstants.COLUMN_ID_CREDIT_PAYMENT, payment.getId_credit_payment());
+        values.put(DBConstants.COLUMN_DATE_PAYMENT, payment.getDate_payment());
+
+        return database.insert(DBConstants.TABLE_NAME_PAYMENT, null, values) > -1;
+    }
+
+    public ArrayList<Payment> readPayments() {
+        ArrayList<Payment> list = new ArrayList<>();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_PAYMENT_QUERY, null);
+            list.clear();
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_PAYMENT));
+                        float somme = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_SOMME_PAYMENT));
+                        int id_credit_pay = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_CREDIT_PAYMENT));
+                        long date = cursor.getLong(cursor.getColumnIndex(DBConstants.COLUMN_DATE_PAYMENT));
+
+                        Payment p = new Payment(id, somme, id_credit_pay, date);
+                        list.add(p);
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return list;
+    }
+
+    public ArrayList<Payment> readOnePayments(int id_credit_pay_) {
+        ArrayList<Payment> list = new ArrayList<>();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_PAYMENT_QUERY, null);
+            list.clear();
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_PAYMENT));
+                        float somme = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_SOMME_PAYMENT));
+                        int id_credit_pay = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_CREDIT_PAYMENT));
+                        long date = cursor.getLong(cursor.getColumnIndex(DBConstants.COLUMN_DATE_PAYMENT));
+                        if (id_credit_pay == id_credit_pay_) {
+                            Payment p = new Payment(id, somme, id_credit_pay, date);
+                            list.add(p);
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return list;
+    }
+
+
+    /**
+     * TRANCHE INSERT AND SELECT
+     **/
+    public boolean insertTranche(Tranche tranche) {
+        ContentValues values = new ContentValues();
+        values.put(DBConstants.COLUMN_SOMME_TRANCHE, tranche.getSomme_tranche());
+        values.put(DBConstants.COLUMN_ID_CREDIT_TRANCHE, tranche.getId_credit_tranche());
+        values.put(DBConstants.COLUMN_DATE_TRANCHE, tranche.getDate_tranche());
+
+        return database.insert(DBConstants.TABLE_NAME_TRANCHE, null, values) > -1;
+    }
+
+    public ArrayList<Tranche> readTranche() {
+        ArrayList<Tranche> list = new ArrayList<>();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_TRANCHE_QUERY, null);
+            list.clear();
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_TRANCHE));
+                        float somme = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_SOMME_TRANCHE));
+                        int id_credit_pay = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_CREDIT_TRANCHE));
+                        long date = cursor.getLong(cursor.getColumnIndex(DBConstants.COLUMN_DATE_TRANCHE));
+
+                        Tranche p = new Tranche(id, somme, id_credit_pay, date);
+                        list.add(p);
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return list;
+    }
+
+    public ArrayList<Tranche> readOneTranche(int id_credit_pay_) {
+        ArrayList<Tranche> list = new ArrayList<>();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_TRANCHE_QUERY, null);
+            list.clear();
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_TRANCHE));
+                        float somme = cursor.getFloat(cursor.getColumnIndex(DBConstants.COLUMN_SOMME_TRANCHE));
+                        int id_credit_pay = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_CREDIT_TRANCHE));
+                        long date = cursor.getLong(cursor.getColumnIndex(DBConstants.COLUMN_DATE_TRANCHE));
+                        if (id_credit_pay == id_credit_pay_) {
+                            Tranche p = new Tranche(id, somme, id_credit_pay, date);
+                            list.add(p);
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return list;
     }
 
 }

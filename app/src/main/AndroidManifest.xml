@@ -50,6 +50,10 @@
             android:name=".agri.EditAgriculteurs"
             android:label="@string/title_activity_edit_agriculteurs" />
 
+        <activity
+            android:name=".credit.Main_credit"
+            android:label="@string/app_name" />
+
 
         <meta-data
             android:name="io.fabric.ApiKey"

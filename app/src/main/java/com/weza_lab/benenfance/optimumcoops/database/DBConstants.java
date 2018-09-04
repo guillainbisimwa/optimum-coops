@@ -188,6 +188,76 @@ class DBConstants {
             " ); ";
 
     /**
+     * CREDIT TABLE
+     **/
+
+    static final String TABLE_NAME_CREDIT = "credit";
+
+    static final String COLUMN_ID_CREDIT = "id_credit";
+    static final String COLUMN_SOMME_CREDIT = "somme_credit";
+    static final String COLUMN_PHONE_USER_CREDIT = "phone_user_credit";
+    static final String COLUMN_TYPE_USER_CREDIT = "type_user_credit";
+    static final String COLUMN_ETAT_CREDIT = "etat_credit";
+    static final String COLUMN_DATE_CREDIT = "date_credit";
+    static final String COLUMN_TAUX_INTERET_CREDIT = "taux_credit";
+    static final String COLUMN_HASH_CREDIT = "hash_credit";
+    static final String COLUMN_PREVIOUS_HASH_CREDIT = "previous_hash_credit";
+    static final String COLUMN_NONCE_CREDIT = "nonce_credit";
+    static final String COLUMN_MOTIF_CREDIT = "motif_credit";
+    static final String COLUMN_DUREE_CREDIT = "duree_credit";
+
+    static final String CREATE_TABLE_CREDIT = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_CREDIT + " ( " +
+            COLUMN_ID_CREDIT + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_SOMME_CREDIT + " TEXT, " +
+            COLUMN_PHONE_USER_CREDIT + " TEXT, " +
+            COLUMN_TYPE_USER_CREDIT + " INTEGER, " +
+            COLUMN_ETAT_CREDIT + " INTEGER, " +
+            COLUMN_DATE_CREDIT + " TEXT, " +
+            COLUMN_MOTIF_CREDIT + " TEXT, " +
+            COLUMN_TAUX_INTERET_CREDIT + " TEXT, " +
+            COLUMN_HASH_CREDIT + " TEXT," +
+            COLUMN_PREVIOUS_HASH_CREDIT + " TEXT, " +
+            COLUMN_DUREE_CREDIT + " INTEGER, " +
+            COLUMN_NONCE_CREDIT + " INTEGER " +
+            " ); ";
+
+    /**
+     * PAYMENT TABLE
+     **/
+
+    static final String TABLE_NAME_PAYMENT = "payment";
+
+    static final String COLUMN_ID_PAYMENT = "id_payment";
+    static final String COLUMN_SOMME_PAYMENT = "somme_payment";
+    static final String COLUMN_ID_CREDIT_PAYMENT = "id_credit_payment";
+    static final String COLUMN_DATE_PAYMENT = "date_payment";
+
+    static final String CREATE_TABLE_PAYEMENT = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_PAYMENT + " ( " +
+            COLUMN_ID_PAYMENT + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_SOMME_PAYMENT + " TEXT, " +
+            COLUMN_ID_CREDIT_PAYMENT + " INTEGER, " +
+            COLUMN_DATE_PAYMENT + " TEXT " +
+            " ); ";
+
+    /**
+     * TRANCHE TABLE
+     **/
+
+    static final String TABLE_NAME_TRANCHE = "tranche";
+
+    static final String COLUMN_ID_TRANCHE = "id_tranche";
+    static final String COLUMN_SOMME_TRANCHE = "somme_tranche";
+    static final String COLUMN_ID_CREDIT_TRANCHE = "id_credit_tranche";
+    static final String COLUMN_DATE_TRANCHE = "date_tranche";
+
+    static final String CREATE_TABLE_TRANCHE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_TRANCHE + " ( " +
+            COLUMN_ID_TRANCHE + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_SOMME_TRANCHE + " TEXT, " +
+            COLUMN_ID_CREDIT_TRANCHE + " INTEGER, " +
+            COLUMN_DATE_TRANCHE + " TEXT " +
+            " ); ";
+
+    /**
      * LES REQUETES
      **/
     static final String SELECT_QUERY = "SELECT * FROM " + USER_TABLE;
@@ -196,11 +266,12 @@ class DBConstants {
     static final String SELECT_EMPLOYER_QUERY = "SELECT * FROM " + TABLE_NAME_EMPLOYER;
     static final String SELECT_ENTREPRENEUR_QUERY = "SELECT * FROM " + TABLE_NAME_ENTREPRENEUR;
 
-    //static final String SELECT_PERSONNE_QUERY = "SELECT * FROM " +TABLE_NAME_AGRICULTEURS+ " , " +TABLE_NAME_PETIT_COM;
-
     static final String SELECT_PERSONNE_QUERY = "SELECT * FROM " + TABLE_NAME_AGRICULTEURS + " , " + TABLE_NAME_ENTREPRENEUR
             + " , " + TABLE_NAME_PETIT_COM + " , " + TABLE_NAME_EMPLOYER + "WHERE 1";
 
+    static final String SELECT_CREDIT_QUERY = "SELECT * FROM " + TABLE_NAME_CREDIT;
+    static final String SELECT_PAYMENT_QUERY = "SELECT * FROM " + TABLE_NAME_PAYMENT;
+    static final String SELECT_TRANCHE_QUERY = "SELECT * FROM " + TABLE_NAME_TRANCHE;
 
 
 }

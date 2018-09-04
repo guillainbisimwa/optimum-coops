@@ -22,6 +22,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DBConstants.CREATE_TABLE_PETIT_COM);
         db.execSQL(DBConstants.CREATE_TABLE_EMPLOYER);
         db.execSQL(DBConstants.CREATE_TABLE_ENTREPRENEUR);
+
+        db.execSQL(DBConstants.CREATE_TABLE_CREDIT);
+        db.execSQL(DBConstants.CREATE_TABLE_PAYEMENT);
+        db.execSQL(DBConstants.CREATE_TABLE_TRANCHE);
     }
 
     @Override
@@ -31,6 +35,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_PETIT_COM);
         db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_EMPLOYER);
         db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_ENTREPRENEUR);
+
+        db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_CREDIT);
+        db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_PAYMENT);
+        db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_TRANCHE);
     }
 
 }
