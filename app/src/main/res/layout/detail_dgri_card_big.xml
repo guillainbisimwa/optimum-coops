@@ -42,7 +42,7 @@
 
                         <ImageView
                             android:id="@+id/_icon_pic_detais"
-                            android:layout_width="40px"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"
                             app:srcCompat="@drawable/ic_person_black_24dp"
                             tools:ignore="VectorDrawableCompat" />

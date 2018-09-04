@@ -75,7 +75,6 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
     private View mProgressView;
     private View mLoginFormView;
     private Spinner type_spinner;
-    private Spinner spinner_cours_eau;
     private AutoCompleteTextView nom;
     private AutoCompleteTextView postnom;
     private AutoCompleteTextView phone;
@@ -93,7 +92,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
     private DBQueries dbQueries;
     private DBHelper dbHelper;
     private int default_type_;
-    private LinearLayout radio_layout, spiner_layout_cour, bottom_layout;
+    private LinearLayout radio_layout, bottom_layout;
     private Button inscription_button;
 
     @SuppressLint("ResourceAsColor")
@@ -116,7 +115,6 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
         mots_de_passe = findViewById(R.id.mots_de_passe);
         mots_de_passe_conf = findViewById(R.id.mots_de_passe_conf);
         adresse = findViewById(R.id.adresse);
-        spinner_cours_eau = findViewById(R.id.spinner_cours_eau);
 
         //les layouts de difference etntre les utilisateurs
         plantation_layout = findViewById(R.id.plantation_layout);
@@ -131,8 +129,8 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
 
 
         radio_layout = findViewById(R.id.radio_layout);
-        spiner_layout_cour = findViewById(R.id.spiner_layout_cour);
-        spiner_layout_cour.setVisibility(View.GONE);
+        //spiner_layout_cour = findViewById(R.id.spiner_layout_cour);
+        //spiner_layout_cour.setVisibility(View.GONE);
         bottom_layout = findViewById(R.id.bottom_layout);
 
 
@@ -151,12 +149,6 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
         //ajouter ecouteru sur le type d utilistateur
         type_spinner.setOnItemSelectedListener(this);
 
-
-        ArrayAdapter<CharSequence> adapter_spiner_cours_eau = ArrayAdapter.createFromResource(getApplicationContext(),
-                R.array.cours_d_eau_array, android.R.layout.simple_spinner_item);
-
-        adapter_spiner_cours_eau.setDropDownViewResource(R.layout.optimum_spiner_dropdown);
-        spinner_cours_eau.setAdapter(adapter_spiner_cours_eau);
 
         //default UI for agriculteur
         plantation_layout.setVisibility(View.VISIBLE);
@@ -456,7 +448,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
             postnom.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);
             radio_layout.setVisibility(View.VISIBLE);
-            spiner_layout_cour.setVisibility(View.VISIBLE);
+            //spiner_layout_cour.setVisibility(View.VISIBLE);
             /*gender_group.setVisibility(View.GOVISIBLE*/
             /*radio_male.setVisibility(View.GOVISIBLE*/
             /*radio_female.setVisibility(View.GOVISIBLE*/
@@ -478,7 +470,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
             postnom.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);
             radio_layout.setVisibility(View.VISIBLE);
-            spiner_layout_cour.setVisibility(View.VISIBLE);
+            //spiner_layout_cour.setVisibility(View.VISIBLE);
             /*gender_group.setVisibility(View.GOVISIBLE*/
             /*radio_male.setVisibility(View.GOVISIBLE*/
             /*radio_female.setVisibility(View.GOVISIBLE*/
@@ -499,7 +491,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
             postnom.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);
             radio_layout.setVisibility(View.VISIBLE);
-            spiner_layout_cour.setVisibility(View.VISIBLE);
+            //spiner_layout_cour.setVisibility(View.VISIBLE);
             /*gender_group.setVisibility(View.GOVISIBLE*/
             /*radio_male.setVisibility(View.GOVISIBLE*/
             /*radio_female.setVisibility(View.GOVISIBLE*/
@@ -520,7 +512,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
             postnom.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);
             radio_layout.setVisibility(View.VISIBLE);
-            spiner_layout_cour.setVisibility(View.VISIBLE);
+            //spiner_layout_cour.setVisibility(View.VISIBLE);
             /*gender_group.setVisibility(View.GOVISIBLE*/
             /*radio_male.setVisibility(View.GOVISIBLE*/
             /*radio_female.setVisibility(View.GOVISIBLE*/
@@ -542,7 +534,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
             postnom.setVisibility(View.GONE);
             phone.setVisibility(View.GONE);
             radio_layout.setVisibility(View.GONE);
-            spiner_layout_cour.setVisibility(View.GONE);
+            //spiner_layout_cour.setVisibility(View.GONE);
             /*gender_group.setVisibility(View.GONE);*/
             /*radio_male.setVisibility(View.GONE);*/
             /*radio_female.setVisibility(View.GONE);*/
@@ -631,47 +623,51 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
 
             dbQueries.open();
 
-            if (default_type_ == 100) {
-                Agriculteurs agriculteurs = new Agriculteurs(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, 0, 0, null, 0, default_type_, 0, plantation_);
+            //check if phone number exists
+            if (!dbQueries.checkPersonne(phone_)) {
 
-                if (!dbQueries.checkPersonne(phone_)) {
-                    dbQueries.insertAgriculteur(agriculteurs);
-                } else {
-                    dbQueries.close();
-                    return false;
-                }
-            } else if (default_type_ == 101) {
-                Petit_commercant petit_commercant = new Petit_commercant(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, 0, 0, null, 0, default_type_, 0, domaine_);
+                if (default_type_ == 100) {
+                    Agriculteurs agriculteurs = new Agriculteurs(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
+                            adresse_, 0, 0, 0, null, 0, default_type_, 0, plantation_);
 
-                if (!dbQueries.checkPersonne(phone_)) {
-                    dbQueries.insertPetit_com(petit_commercant);
-                } else {
-                    dbQueries.close();
-                    return false;
-                }
-            } else if (default_type_ == 103) {
-                Employer employer = new Employer(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, 0, 0, null, 0, default_type_, 0, employeur_);
+                    if (!dbQueries.checkPersonne(phone_)) {
+                        dbQueries.insertAgriculteur(agriculteurs);
+                    } else {
+                        dbQueries.close();
+                        return false;
+                    }
+                } else if (default_type_ == 101) {
+                    Petit_commercant petit_commercant = new Petit_commercant(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
+                            adresse_, 0, 0, 0, null, 0, default_type_, 0, domaine_);
 
-                if (!dbQueries.checkPersonne(phone_)) {
-                    dbQueries.insertEmployer(employer);
-                } else {
-                    dbQueries.close();
-                    return false;
-                }
-            } else if (default_type_ == 103) {
-                Entrepreneurs entrepreneurs = new Entrepreneurs(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, 0, 0, null, 0, default_type_, 0, entreprise_);
+                    if (!dbQueries.checkPersonne(phone_)) {
+                        dbQueries.insertPetit_com(petit_commercant);
+                    } else {
+                        dbQueries.close();
+                        return false;
+                    }
+                } else if (default_type_ == 103) {
+                    Employer employer = new Employer(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
+                            adresse_, 0, 0, 0, null, 0, default_type_, 0, employeur_);
 
-                if (!dbQueries.checkPersonne(phone_)) {
-                    dbQueries.insertEntrepreneur(entrepreneurs);
-                } else {
-                    dbQueries.close();
-                    return false;
+                    if (!dbQueries.checkPersonne(phone_)) {
+                        dbQueries.insertEmployer(employer);
+                    } else {
+                        dbQueries.close();
+                        return false;
+                    }
+                } else if (default_type_ == 103) {
+                    Entrepreneurs entrepreneurs = new Entrepreneurs(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
+                            adresse_, 0, 0, 0, null, 0, default_type_, 0, entreprise_);
+
+                    if (!dbQueries.checkPersonne(phone_)) {
+                        dbQueries.insertEntrepreneur(entrepreneurs);
+                    } else {
+                        dbQueries.close();
+                        return false;
+                    }
                 }
-            }
+            } else return false;
 
             dbQueries.close();
 

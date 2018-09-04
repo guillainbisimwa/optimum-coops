@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static String DB_NAME = "optimumCoops";
-    private static int DB_VERSION = 2;
+    public static String DB_NAME = "optimum_Coops";
+    private static int DB_VERSION = 1;
     private Context context;
 
     public DBHelper(Context context) {

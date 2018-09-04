@@ -82,6 +82,16 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
         else
             holder.stateImage.setImageResource(R.drawable.ic_lock_outline_black_24dp);
 
+        if (a.getDefault_type() == 100)
+            holder.mType.setText("Agriculteurs");
+        else if (a.getDefault_type() == 101)
+            holder.mType.setText("Commercant");
+        else if (a.getDefault_type() == 102)
+            holder.mType.setText("Employer");
+        else if (a.getDefault_type() == 103)
+            holder.mType.setText("Entrepreneur");
+
+
         switch (getItemViewType(position)) {
             case TYPE_HEADER:
                 break;
@@ -93,7 +103,7 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final View mView;
         public final ImageView uImage, stateImage;
-        public final TextView mUname, mPhone;
+        public final TextView mUname, mPhone, mType;
 
         private int position = 0;
         private boolean isVisible;
@@ -107,6 +117,7 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
             stateImage = view.findViewById(R.id.state_a);
             mUname = view.findViewById(R.id.nom_a);
             mPhone = view.findViewById(R.id.phone_a);
+            mType = view.findViewById(R.id.type_a);
 
             isVisible = false;
 
@@ -122,6 +133,7 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
             Intent i = new Intent(mContext, Details_agri.class);
             i.putExtra("mPhone", mPhone.getText());
             i.putExtra("mName", mUname.getText());
+            i.putExtra("mType", mType.getText());
             mContext.startActivity(i);
         }
 

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weza_lab.benenfance.optimumcoops.R;
-import com.weza_lab.benenfance.optimumcoops.pojo.Agriculteurs;
+import com.weza_lab.benenfance.optimumcoops.pojo.Personnes;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class DetailAgriRecyclerViewAdapter extends RecyclerView.Adapter<DetailAg
 
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
-    final List<Agriculteurs> contents;
+    final List<Personnes> contents;
     final private Context mContext;
 
-    public DetailAgriRecyclerViewAdapter(List<Agriculteurs> contents, Context mContext) {
+    public DetailAgriRecyclerViewAdapter(List<Personnes> contents, Context mContext) {
         this.contents = contents;
         this.mContext = mContext;
     }
@@ -65,10 +65,10 @@ public class DetailAgriRecyclerViewAdapter extends RecyclerView.Adapter<DetailAg
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Agriculteurs a = contents.get(position);
+        Personnes a = contents.get(position);
 
-        holder._icon_pic_detais.setImageResource(R.drawable.ic_person_add_black_24dp);
-        holder._titre_details.setText(R.string.inf0_agri);
+        holder._icon_pic_detais.setImageResource(R.drawable.ic_person_black_24dp);
+
         holder._nom_f_details.setText(a.getNom_a());
         holder._prenom_details.setText(a.getPostnom_a());
         holder._sexe_details.setText(a.getGender_a());
@@ -77,6 +77,15 @@ public class DetailAgriRecyclerViewAdapter extends RecyclerView.Adapter<DetailAg
         if (a.getIs_validate_a() == 1)
             holder._pic_etat_details.setImageResource(R.drawable.ic_lock_open_black_24dp);
         else holder._pic_etat_details.setImageResource(R.drawable.ic_lock_outline_black_24dp);
+
+        if (a.getDefault_type() == 100)
+            holder._titre_details.setText(R.string.inf0_agri);
+        else if (a.getDefault_type() == 101)
+            holder._titre_details.setText(R.string.inf0_petit_com);
+        else if (a.getDefault_type() == 102)
+            holder._titre_details.setText(R.string.inf0_em);
+        else if (a.getDefault_type() == 103)
+            holder._titre_details.setText(R.string.inf0_entre);
 
         switch (getItemViewType(position)) {
             case TYPE_HEADER:

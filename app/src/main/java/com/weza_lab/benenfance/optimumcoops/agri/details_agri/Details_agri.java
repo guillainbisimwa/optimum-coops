@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
@@ -28,6 +29,7 @@ public class Details_agri extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
 
     private String mPhone, mName;
+    private int mType;
 
     @Override
     public void onBackPressed() {
@@ -56,6 +58,10 @@ public class Details_agri extends AppCompatActivity {
         if (intent.hasExtra("mName")) {
             mName = intent.getStringExtra("mName");
         } else mName = "";
+
+        if (intent.hasExtra("mType")) {
+            mType = intent.getIntExtra("mType", 0);
+        } else mType = 0;
 
         final Toolbar toolbar = mViewPager.getToolbar();
         if (toolbar != null) {
@@ -115,10 +121,12 @@ public class Details_agri extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     mViewPager.notifyHeaderChanged();
-                                    Intent i = new Intent(getBaseContext(), EditAgriculteurs.class);
-                                    i.putExtra("mPhone", mPhone);
-                                    startActivity(i);
-                                    //Toast.makeText(getApplicationContext(), "Clic sur fab edit", Toast.LENGTH_SHORT).show();
+                                    if (mType == 100) {
+                                        Intent i = new Intent(getBaseContext(), EditAgriculteurs.class);
+                                        i.putExtra("mPhone", mPhone);
+                                        startActivity(i);
+                                    } else
+                                        Toast.makeText(getApplicationContext(), "Clic sur fab edit", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }

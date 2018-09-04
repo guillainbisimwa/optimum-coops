@@ -14,7 +14,7 @@ import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDeco
 import com.weza_lab.benenfance.optimumcoops.R;
 import com.weza_lab.benenfance.optimumcoops.database.DBHelper;
 import com.weza_lab.benenfance.optimumcoops.database.DBQueries;
-import com.weza_lab.benenfance.optimumcoops.pojo.Agriculteurs;
+import com.weza_lab.benenfance.optimumcoops.pojo.Personnes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,10 +69,10 @@ public class DetailsAgriRecyclerViewFrgmnt extends Fragment {
         ButterKnife.bind(this, view);
 
         //agriculteurs = new Agriculteurs();
-        List<Agriculteurs> items = new ArrayList<>();
+        List<Personnes> items = new ArrayList<>();
 
         dbQueries.open();
-        items.add(dbQueries.readOneAgriculteurs(mPhone));
+        items.add(dbQueries.readOnePersonnes(mPhone));
         dbQueries.close();
 
         if (GRID_LAYOUT) {

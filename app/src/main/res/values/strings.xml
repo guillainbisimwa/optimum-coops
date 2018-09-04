@@ -48,7 +48,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="inf0_agri">Information de l\'utilisateur</string>
+    <string name="inf0_user">Information de l\'utilisateur</string>
+    <string name="inf0_agri">Information de l\'agriculteur</string>
+    <string name="inf0_petit_com">Information du commercant</string>
+    <string name="inf0_em">Information de l\'employer</string>
+    <string name="inf0_entre">Information de l\'entrepreneur</string>
 
     <!--text intro-->
     <string name="item1_titre">Optimum Coops</string>

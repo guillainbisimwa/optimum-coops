@@ -60,7 +60,7 @@ public class PersRecyclerViewFragment extends Fragment {
         dbQueries.close();
 
         //setup materialviewpager
-        if (items.isEmpty()) {
+        if (!items.isEmpty()) {
             Toast.makeText(getContext(), items.size() + " utilisateur(s)", Toast.LENGTH_LONG).show();
         }
 
