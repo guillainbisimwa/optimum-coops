@@ -279,6 +279,82 @@ public class DBQueries {
         return database.insert(DBConstants.TABLE_NAME_PETIT_COM, null, contentValues) > -1;
     }
 
+    public Petit_commercant readOnePetit_com(String phone) {
+        Petit_commercant a = new Petit_commercant();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_PETIT_COM_QUERY, null);
+
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_PETI_COM));
+                        String nom_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_NAME_PETI_COM));
+                        String phone_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PHONE_PETI_COM));
+                        String postnom_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_LAST_NAME_PETI_COM));
+                        String gender_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_GENDER_PETI_COM));
+                        String mots_de_passe_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PASSWORD_PETI_COM));
+                        String mots_de_passe_conf_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PASSWORD_CONFIRM_PETI_COM));
+                        String adresse_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_ADDRESS_PETI_COM));
+                        String domaine_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_DOMAINE_PETI_COM));
+
+                        byte[] conPhoto = cursor.getBlob(cursor.getColumnIndex(DBConstants.CONTACT_PHOTO_PETI_COM));
+
+                        int is_sync_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_SYNC_PETI_COM));
+                        int is_validate_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_VALIDATE_PETI_COM));
+                        int is_update_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_UPDATE_PETI_COM));
+                        int is_chief_group = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_CHIEF_GROUP_PETI_COM));
+                        int id_group = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_GROUP_PETI_COM));
+                        int dafault_type = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_DEFAULT_TYPE_PETI_COM));
+
+                        if (phone.equals(phone_a)) {
+                            Petit_commercant petit_commercant = new Petit_commercant(id_a, nom_a, phone_a, postnom_a, gender_a, mots_de_passe_a,
+                                    mots_de_passe_conf_a, adresse_a, is_sync_a, is_validate_a, is_update_a,
+                                    conPhoto, id_group, dafault_type, is_chief_group, domaine_a);
+                            a = petit_commercant;
+                            break;
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return a;
+    }
+
+
+    public boolean updatePetit_com(Petit_commercant petit_commercant, String mPhone) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConstants.COLUMN_NAME_PETI_COM, petit_commercant.getNom_a());
+        contentValues.put(DBConstants.COLUMN_LAST_NAME_PETI_COM, petit_commercant.getPostnom_a());
+        contentValues.put(DBConstants.COLUMN_GENDER_PETI_COM, petit_commercant.getGender_a());
+        contentValues.put(DBConstants.COLUMN_PHONE_PETI_COM, petit_commercant.getPhone_a());
+        contentValues.put(DBConstants.COLUMN_PASSWORD_PETI_COM, petit_commercant.getMots_de_passe_a());
+        contentValues.put(DBConstants.COLUMN_PASSWORD_CONFIRM_PETI_COM, petit_commercant.getMots_de_passe_conf_a());
+        contentValues.put(DBConstants.COLUMN_ADDRESS_PETI_COM, petit_commercant.getAdresse_a());
+        contentValues.put(DBConstants.COLUMN_DOMAINE_PETI_COM, petit_commercant.getDomaine());
+
+        contentValues.put(DBConstants.CONTACT_PHOTO_PETI_COM, petit_commercant.getContactPhoto());
+
+        contentValues.put(DBConstants.COLUMN_IS_CHIEF_GROUP_PETI_COM, petit_commercant.getIs_chef_group());
+        contentValues.put(DBConstants.COLUMN_IS_SYNC_PETI_COM, petit_commercant.getIs_sync_a());
+        contentValues.put(DBConstants.COLUMN_IS_VALIDATE_PETI_COM, petit_commercant.getIs_validate_a());
+        contentValues.put(DBConstants.COLUMN_IS_UPDATE_PETI_COM, petit_commercant.getIs_update_a());
+
+        return database.update(DBConstants.TABLE_NAME_PETIT_COM, contentValues, DBConstants.COLUMN_PHONE_PETI_COM + " = ? ", new String[]
+                {String.valueOf(mPhone)}) > -1;
+    }
+
+    public boolean deletePetit_com(String mPhone) {
+        return database.delete(DBConstants.TABLE_NAME_PETIT_COM, DBConstants.COLUMN_PHONE_PETI_COM + " = ? ", new String[]
+                {String.valueOf(mPhone)}) > -1;
+    }
+
+
+
     /**
      * * Employer
      **/
@@ -304,6 +380,82 @@ public class DBQueries {
         return database.insert(DBConstants.TABLE_NAME_EMPLOYER, null, contentValues) > -1;
     }
 
+
+    public Employer readOneEmployer(String phone) {
+        Employer a = new Employer();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_EMPLOYER_QUERY, null);
+
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_EMPLOYER));
+                        String nom_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_NAME_EMPLOYER));
+                        String phone_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PHONE_EMPLOYER));
+                        String postnom_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_LAST_NAME_EMPLOYER));
+                        String gender_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_GENDER_EMPLOYER));
+                        String mots_de_passe_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PASSWORD_EMPLOYER));
+                        String mots_de_passe_conf_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PASSWORD_CONFIRM_EMPLOYER));
+                        String adresse_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_ADDRESS_EMPLOYER));
+                        String employeur_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_EMPLOYEUR_EMPLOYER));
+
+                        byte[] conPhoto = cursor.getBlob(cursor.getColumnIndex(DBConstants.CONTACT_PHOTO_EMPLOYER));
+
+                        int is_sync_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_SYNC_EMPLOYER));
+                        int is_validate_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_VALIDATE_EMPLOYER));
+                        int is_update_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_UPDATE_EMPLOYER));
+                        int is_chief_group = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_CHIEF_GROUP_EMPLOYER));
+                        int id_group = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_GROUP_EMPLOYER));
+                        int dafault_type = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_DEFAULT_TYPE_EMPLOYER));
+
+                        if (phone.equals(phone_a)) {
+                            Employer employer = new Employer(id_a, nom_a, phone_a, postnom_a, gender_a, mots_de_passe_a,
+                                    mots_de_passe_conf_a, adresse_a, is_sync_a, is_validate_a, is_update_a,
+                                    conPhoto, id_group, dafault_type, is_chief_group, employeur_a);
+                            a = employer;
+                            break;
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return a;
+    }
+
+    public boolean updateEmployer(Employer employer, String mPhone) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConstants.COLUMN_NAME_EMPLOYER, employer.getNom_a());
+        contentValues.put(DBConstants.COLUMN_LAST_NAME_EMPLOYER, employer.getPostnom_a());
+        contentValues.put(DBConstants.COLUMN_GENDER_EMPLOYER, employer.getGender_a());
+        contentValues.put(DBConstants.COLUMN_PHONE_EMPLOYER, employer.getPhone_a());
+        contentValues.put(DBConstants.COLUMN_PASSWORD_EMPLOYER, employer.getMots_de_passe_a());
+        contentValues.put(DBConstants.COLUMN_PASSWORD_CONFIRM_EMPLOYER, employer.getMots_de_passe_conf_a());
+        contentValues.put(DBConstants.COLUMN_ADDRESS_EMPLOYER, employer.getAdresse_a());
+        contentValues.put(DBConstants.COLUMN_EMPLOYEUR_EMPLOYER, employer.getEmployeur());
+
+        contentValues.put(DBConstants.CONTACT_PHOTO_EMPLOYER, employer.getContactPhoto());
+
+        contentValues.put(DBConstants.COLUMN_IS_CHIEF_GROUP_EMPLOYER, employer.getIs_chef_group());
+        contentValues.put(DBConstants.COLUMN_IS_SYNC_EMPLOYER, employer.getIs_sync_a());
+        contentValues.put(DBConstants.COLUMN_IS_VALIDATE_EMPLOYER, employer.getIs_validate_a());
+        contentValues.put(DBConstants.COLUMN_IS_UPDATE_EMPLOYER, employer.getIs_update_a());
+
+        return database.update(DBConstants.TABLE_NAME_EMPLOYER, contentValues, DBConstants.COLUMN_PHONE_EMPLOYER + " = ? ", new String[]
+                {String.valueOf(mPhone)}) > -1;
+    }
+
+    public boolean deleteEmployer(String mPhone) {
+        return database.delete(DBConstants.TABLE_NAME_EMPLOYER, DBConstants.COLUMN_PHONE_EMPLOYER + " = ? ", new String[]
+                {String.valueOf(mPhone)}) > -1;
+    }
+
+
+
     /**
      * * Entrepreneur
      **/
@@ -327,6 +479,81 @@ public class DBQueries {
         contentValues.put(DBConstants.COLUMN_ID_GROUP_ENTREPRENEUR, employer.getId_group());
 
         return database.insert(DBConstants.TABLE_NAME_ENTREPRENEUR, null, contentValues) > -1;
+    }
+
+
+    public Entrepreneurs readOneEntrpreneur(String phone) {
+        Entrepreneurs a = new Entrepreneurs();
+        try {
+            Cursor cursor;
+            database = dbHelper.getReadableDatabase();
+            cursor = database.rawQuery(DBConstants.SELECT_ENTREPRENEUR_QUERY, null);
+
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_ENTREPRENEUR));
+                        String nom_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_NAME_ENTREPRENEUR));
+                        String phone_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PHONE_ENTREPRENEUR));
+                        String postnom_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_LAST_NAME_ENTREPRENEUR));
+                        String gender_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_GENDER_ENTREPRENEUR));
+                        String mots_de_passe_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PASSWORD_ENTREPRENEUR));
+                        String mots_de_passe_conf_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_PASSWORD_CONFIRM_ENTREPRENEUR));
+                        String adresse_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_ADDRESS_ENTREPRENEUR));
+                        String entrprise_a = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_NOM_ENTREPRISE_ENTREPRENEUR));
+
+                        byte[] conPhoto = cursor.getBlob(cursor.getColumnIndex(DBConstants.CONTACT_PHOTO_ENTREPRENEUR));
+
+                        int is_sync_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_SYNC_ENTREPRENEUR));
+                        int is_validate_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_VALIDATE_ENTREPRENEUR));
+                        int is_update_a = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_UPDATE_ENTREPRENEUR));
+                        int is_chief_group = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_IS_CHIEF_GROUP_ENTREPRENEUR));
+                        int id_group = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_GROUP_ENTREPRENEUR));
+                        int dafault_type = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_DEFAULT_TYPE_ENTREPRENEUR));
+
+                        if (phone.equals(phone_a)) {
+                            Entrepreneurs entrepreneurs = new Entrepreneurs(id_a, nom_a, phone_a, postnom_a, gender_a, mots_de_passe_a,
+                                    mots_de_passe_conf_a, adresse_a, is_sync_a, is_validate_a, is_update_a,
+                                    conPhoto, id_group, dafault_type, is_chief_group, entrprise_a);
+                            a = entrepreneurs;
+                            break;
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.v("Exception", e.getMessage());
+        }
+        return a;
+    }
+
+
+    public boolean updateEntrepreneur(Entrepreneurs entrepreneurs, String mPhone) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConstants.COLUMN_NAME_ENTREPRENEUR, entrepreneurs.getNom_a());
+        contentValues.put(DBConstants.COLUMN_LAST_NAME_ENTREPRENEUR, entrepreneurs.getPostnom_a());
+        contentValues.put(DBConstants.COLUMN_GENDER_ENTREPRENEUR, entrepreneurs.getGender_a());
+        contentValues.put(DBConstants.COLUMN_PHONE_ENTREPRENEUR, entrepreneurs.getPhone_a());
+        contentValues.put(DBConstants.COLUMN_PASSWORD_ENTREPRENEUR, entrepreneurs.getMots_de_passe_a());
+        contentValues.put(DBConstants.COLUMN_PASSWORD_CONFIRM_ENTREPRENEUR, entrepreneurs.getMots_de_passe_conf_a());
+        contentValues.put(DBConstants.COLUMN_ADDRESS_ENTREPRENEUR, entrepreneurs.getAdresse_a());
+        contentValues.put(DBConstants.COLUMN_NOM_ENTREPRISE_ENTREPRENEUR, entrepreneurs.getNom_entreprise());
+
+        contentValues.put(DBConstants.CONTACT_PHOTO_ENTREPRENEUR, entrepreneurs.getContactPhoto());
+
+        contentValues.put(DBConstants.COLUMN_IS_CHIEF_GROUP_ENTREPRENEUR, entrepreneurs.getIs_chef_group());
+        contentValues.put(DBConstants.COLUMN_IS_SYNC_ENTREPRENEUR, entrepreneurs.getIs_sync_a());
+        contentValues.put(DBConstants.COLUMN_IS_VALIDATE_ENTREPRENEUR, entrepreneurs.getIs_validate_a());
+        contentValues.put(DBConstants.COLUMN_IS_UPDATE_ENTREPRENEUR, entrepreneurs.getIs_update_a());
+
+        return database.update(DBConstants.TABLE_NAME_ENTREPRENEUR, contentValues, DBConstants.COLUMN_PHONE_ENTREPRENEUR + " = ? ", new String[]
+                {String.valueOf(mPhone)}) > -1;
+    }
+
+    public boolean deleteEntrepreneur(String mPhone) {
+        return database.delete(DBConstants.TABLE_NAME_ENTREPRENEUR, DBConstants.COLUMN_PHONE_ENTREPRENEUR + " = ? ", new String[]
+                {String.valueOf(mPhone)}) > -1;
     }
 
 

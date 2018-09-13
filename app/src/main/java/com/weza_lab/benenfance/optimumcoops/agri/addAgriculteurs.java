@@ -203,8 +203,6 @@ public class addAgriculteurs extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-        //adapterView.getS
         int a = type_spinner.getSelectedItemPosition();
 
         if (a == 0) { //agriculteur 100
@@ -442,7 +440,8 @@ public class addAgriculteurs extends AppCompatActivity implements AdapterView.On
                     //         mots_de_passe_,
                     //       mots_de_passe_conf_,
                     adresse_,
-                    plantation_, domaine_,
+                    plantation_,
+                    domaine_,
                     employeur_,
                     entreprise_,
                     default_type_);

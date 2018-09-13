@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".agri.addAgriculteurs">
+    tools:context=".agri.EditAgriculteurs">
 
 
     <LinearLayout
@@ -23,6 +23,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:visibility="gone" />
+
         <ScrollView
             android:id="@+id/login_form"
             android:layout_width="match_parent"
@@ -157,6 +158,48 @@
                                         android:focusable="auto"
                                         android:hint="@string/phone"
                                         android:inputType="phone"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/mots_de_passe_insc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/password"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:theme="@style/AppTheme2" />
+
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="5dp"
+                                    android:textColorHint="@color/grey_300">
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/mots_de_passe_conf"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:focusable="auto"
+                                        android:hint="@string/password_confirm"
+                                        android:inputType="text"
                                         android:maxLines="1"
                                         android:textColor="@color/grey_600"
                                         android:textColorHighlight="@color/grey_300"
@@ -323,6 +366,58 @@
                                         android:theme="@style/AppTheme2" />
 
                                 </android.support.design.widget.TextInputLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/spiner_layout_validation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/etat"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textSize="16sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_validation"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:theme="@style/themeSpinner_inv" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/spiner_layout_chef"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/chef_group"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textSize="16sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_chef_group"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:theme="@style/themeSpinner_inv" />
+
+                                </LinearLayout>
 
 
                             </LinearLayout>
