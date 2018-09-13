@@ -122,7 +122,6 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
         employeur_layout = findViewById(R.id.employeur_layout);
         entreprise_layout = findViewById(R.id.entreprise_layout);
 
-        plantation = findViewById(R.id.plantation);
         domaine = findViewById(R.id.domaine);
         employeur = findViewById(R.id.employeur);
         entreprise = findViewById(R.id.entreprise);
@@ -646,7 +645,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
                         dbQueries.close();
                         return false;
                     }
-                } else if (default_type_ == 103) {
+                } else if (default_type_ == 102) {
                     Employer employer = new Employer(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
                             adresse_, 0, 0, 0, null, 0, default_type_, 0, employeur_);
 
@@ -681,8 +680,8 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
 
             if (success) {
                 Toast.makeText(Registration.this, "ENREGISTREMENT AVEC SUCCESS", Toast.LENGTH_SHORT).show();
-                //finish();
                 finish();
+                //finish();
                 //shared preference
                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getResources().getString(R.string.application_key),
                         Context.MODE_PRIVATE);
@@ -695,7 +694,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
                 editor.apply();
 
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                //finish();
 
             } else {
                 Toast.makeText(Registration.this, "Erreur, ce numero de telephone existe deja", Toast.LENGTH_SHORT).show();

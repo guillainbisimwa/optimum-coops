@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops;
+package com.weza_lab.benenfance.optimumcoops.adapter;
 
 
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.weza_lab.benenfance.optimumcoops.R;
 import com.weza_lab.benenfance.optimumcoops.agri.details_agri.Details_agri;
 import com.weza_lab.benenfance.optimumcoops.pojo.Agriculteurs;
 

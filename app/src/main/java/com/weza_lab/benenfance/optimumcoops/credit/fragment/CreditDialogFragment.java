@@ -27,6 +27,10 @@ import com.weza_lab.benenfance.optimumcoops.R;
 import com.weza_lab.benenfance.optimumcoops.database.DBHelper;
 import com.weza_lab.benenfance.optimumcoops.database.DBQueries;
 import com.weza_lab.benenfance.optimumcoops.pojo.Credit;
+import com.weza_lab.benenfance.optimumcoops.pojo.Tranche;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class CreditDialogFragment extends DialogFragment implements DialogInterface.OnClickListener,
         View.OnClickListener {
@@ -47,6 +51,7 @@ public class CreditDialogFragment extends DialogFragment implements DialogInterf
 
     private String mPhone, uName;
     private int user_categorie;
+
 
 
     @NonNull
@@ -162,8 +167,8 @@ public class CreditDialogFragment extends DialogFragment implements DialogInterf
             focusView = somme_cr;
             cancel = true;
         }
-        if (!isValid(echeance_cr_)) {
-            echeance_cr.setError(getString(R.string.error_invalid_numbr));
+        if (!isMonthValid(echeance_cr_)) {
+            echeance_cr.setError(getString(R.string.error_invalid_month));
             focusView = echeance_cr;
             cancel = true;
         }
@@ -172,7 +177,12 @@ public class CreditDialogFragment extends DialogFragment implements DialogInterf
             focusView = motif_cr;
             cancel = true;
         }
-
+        //get Date
+        //Date start_date = new Date(getDate);
+        //String date_string = DateFormat.getDateInstance().format(start_date);
+        //start_date_date.getTime() == long
+        Date now = new Date();
+        long date_now = now.getTime();
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -182,7 +192,7 @@ public class CreditDialogFragment extends DialogFragment implements DialogInterf
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new CreditRegisterTask(somme_cr_, echeance_cr_, motif_cr_, mPhone, user_categorie);
+            mAuthTask = new CreditRegisterTask(somme_cr_, echeance_cr_, motif_cr_, mPhone, user_categorie, date_now);
             mAuthTask.execute((Void) null);
         }
 
@@ -196,6 +206,10 @@ public class CreditDialogFragment extends DialogFragment implements DialogInterf
         return nbr > 0;
     }
 
+    private boolean isMonthValid(int nbr) {
+        return (nbr > 0 && nbr < 13);
+    }
+
     private boolean isNameValid(String password) {
         return password.length() > 3;
     }
@@ -207,13 +221,15 @@ public class CreditDialogFragment extends DialogFragment implements DialogInterf
         private String motif_;
         private String mPhone_;
         private int mType_;
+        private long date_now_;
 
-        public CreditRegisterTask(float somme_, int echeance_, String motif_, String mPhone_, int mType_) {
+        public CreditRegisterTask(float somme_, int echeance_, String motif_, String mPhone_, int mType_, long date_now_) {
             this.somme_ = somme_;
             this.echeance_ = echeance_;
             this.motif_ = motif_;
             this.mPhone_ = mPhone_;
             this.mType_ = mType_;
+            this.date_now_ = date_now_;
         }
 
         @Override
@@ -227,9 +243,39 @@ public class CreditDialogFragment extends DialogFragment implements DialogInterf
                 return false;
             }
             dbQueries.open();
-            Credit c = new Credit(0, 0, null, null, 0, somme_, mPhone_, mType_, 0, 2, motif_, echeance_);
+            Credit c = new Credit(0, date_now_, null, null, 0, somme_, mPhone_, mType_, 0, 2, motif_, echeance_);
 
             if (dbQueries.insertCredit(c)) {
+                //ajouter echeancier
+                /**
+                 * ICI on divise la somme en notre de mois et on applique un taux
+                 **/
+                //get ID CREDIT
+                int id_credit = dbQueries.getIdCredits(date_now_);
+
+                float somme_et_taux = ((somme_ * 2) / 100) + somme_; //somme + 2%
+                float somme_distinct = somme_et_taux / echeance_;
+                for (int i = 0; i < echeance_; i++) {
+                    //add date + 30 days
+                    long temp_dte = 0;
+                    Calendar calendar = Calendar.getInstance();
+
+
+                    if (i > 1) {
+                        calendar.setTimeInMillis(temp_dte);
+                        calendar.add(Calendar.DATE, 30);
+                    } else {
+                        calendar.setTimeInMillis(date_now_);
+                        calendar.add(Calendar.DATE, 30);
+                    }
+
+                    Date resultdate = new Date(calendar.getTimeInMillis());
+                    temp_dte = resultdate.getTime();
+
+                    Tranche t = new Tranche(i + 1, somme_distinct, id_credit, resultdate.getTime());
+                    dbQueries.insertTranche(t);
+                }
+
                 dbQueries.close();
                 return true;
             } else {

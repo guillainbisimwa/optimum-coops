@@ -51,18 +51,18 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="inf0_user">Information de l\'utilisateur</string>
-    <string name="inf0_agri">Information de l\'agriculteur</string>
-    <string name="inf0_petit_com">Information du commercant</string>
-    <string name="inf0_em">Information de l\'employer</string>
-    <string name="inf0_entre">Information de l\'entrepreneur</string>
+    <string name="inf0_user">Info sur l\'utilisateur</string>
+    <string name="inf0_agri">Info sur l\'agriculteur</string>
+    <string name="inf0_petit_com">Info sur commercant</string>
+    <string name="inf0_em">Info sur l\'employer</string>
+    <string name="inf0_entre">Info sur l\'entrepreneur</string>
 
     <!--text intro-->
     <string name="item1_titre">Optimum Coops</string>
     <string name="item2_titre">Vos produits</string>
     <string name="item3_titre">Finance</string>
 
-    <string name="item1_content">Application de gestion de votre business .</string>
+    <string name="item1_content">Application de gestion de votre business.</string>
     <string name="item2_content">Un vrais outils federateur pour toutes les filieres </string>
     <string name="item3_content">Profiter de vos transactions financieres en toute securite</string>
     <string name="title_activity_add_agriculteurs">Ajouter utilisateur</string>
@@ -75,6 +75,8 @@
     <string name="select_cooperative">Selectionner cooperative</string>
     <string name="contract_credit">Demander credit</string>
     <string name="motif">Motif de votre credit</string>
+
+    <string name="aucune_donnee">Aucune donnee</string>
 
 
     <!-- Preference for app token -->
@@ -116,8 +118,13 @@
     <string name="error_invalid_length">3 caracteres au minimum</string>
     <string name="error_invalid_adress">4 caracteres au minimum</string>
     <string name="error_invalid_numbr">La valeur doit etre > 0</string>
+    <string name="error_invalid_month">La valeur doit etre ente 1 et 12 </string>
     <string name="etat">Etat de validation</string>
     <string name="chef_group">Chef du groupe</string>
+
+
+    <string name="taux">Taux d\'interet</string>
+    <string name="datte">Datte</string>
 
     <string-array name="type_users">
         <item>Agriculteur</item>

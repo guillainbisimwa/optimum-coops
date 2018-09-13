@@ -50,7 +50,7 @@ public class MainActivity extends DrawerActivity {
         //Categorize all users
         SharedPreferences prefs = getApplicationContext().getSharedPreferences(getResources().getString(R.string.application_key),
                 Context.MODE_PRIVATE);
-        user_categorie = prefs.getInt(getResources().getString(R.string.g_name), 0);
+        user_categorie = prefs.getInt(getResources().getString(R.string.g_name), 99);
         mPhone = prefs.getString(getResources().getString(R.string.user_phone), "");
         uName = prefs.getString(getResources().getString(R.string.user_name), "");
 
@@ -311,6 +311,7 @@ public class MainActivity extends DrawerActivity {
             editor_connect.putBoolean(getResources().getString(R.string.app_id), false);
             editor_connect.apply();
             finish();
+
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);

@@ -1,10 +1,12 @@
-package com.weza_lab.benenfance.optimumcoops;
+package com.weza_lab.benenfance.optimumcoops.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.weza_lab.benenfance.optimumcoops.R;
 
 import java.util.List;
 

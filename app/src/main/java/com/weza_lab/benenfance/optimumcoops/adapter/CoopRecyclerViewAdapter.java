@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops;
+package com.weza_lab.benenfance.optimumcoops.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.weza_lab.benenfance.optimumcoops.R;
 import com.weza_lab.benenfance.optimumcoops.pojo.Cooperatives;
 
 import java.util.List;

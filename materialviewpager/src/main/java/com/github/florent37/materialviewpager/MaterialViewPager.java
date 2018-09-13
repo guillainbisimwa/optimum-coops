@@ -408,6 +408,8 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
 
             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) sample.getLayoutParams();
             int marginTop = Math.round(Utils.dpToPx(settings.headerHeight + 10, getContext()));
+            //int marginTop =0;
+
             params.setMargins(0, marginTop, 0, 0);
             super.setLayoutParams(params);
 

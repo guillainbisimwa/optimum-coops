@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.weza_lab.benenfance.optimumcoops.MainActivity;
@@ -35,9 +34,9 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
 
     private final Pattern phoneRegex = Pattern.compile("^\\+243[0-9]{9}$",
             Pattern.CASE_INSENSITIVE);
-    private Spinner spinner_chef_group;
-    private Spinner spinner_validation;
-    private Spinner spinner_cours_eau;
+
+    //private Spinner spinner_chef_group;
+    //private Spinner spinner_cours_eau;
     private ScrollView login_form;
     private AutoCompleteTextView nom;
     private AutoCompleteTextView postnom;
@@ -45,8 +44,8 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
     private RadioGroup gender_group;
     private RadioButton radio_male;
     private RadioButton radio_female;
-    private AutoCompleteTextView mots_de_passe;
-    private AutoCompleteTextView mots_de_passe_conf;
+    //private AutoCompleteTextView mots_de_passe;
+    //private AutoCompleteTextView mots_de_passe_conf;
     private AutoCompleteTextView adresse;
     private AutoCompleteTextView plantation;
     private DBQueries dbQueries;
@@ -100,14 +99,14 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         gender_group = findViewById(R.id.gender_group_insc);
         radio_male = findViewById(R.id.radio_male_insc);
         radio_female = findViewById(R.id.radio_female_insc);
-        mots_de_passe = findViewById(R.id.mots_de_passe_insc);
-        mots_de_passe_conf = findViewById(R.id.mots_de_passe_conf_insc);
+        //mots_de_passe = findViewById(R.id.mots_de_passe_insc);
+        //mots_de_passe_conf = findViewById(R.id.mots_de_passe_conf_insc);
         adresse = findViewById(R.id.adresse_insc);
         plantation = findViewById(R.id.plantation_insc);
 
-        spinner_cours_eau = findViewById(R.id.spinner_cours_eau_insc);
-        spinner_validation = findViewById(R.id.spinner_validation);
-        spinner_chef_group = findViewById(R.id.spinner_chef_group);
+        //spinner_cours_eau = findViewById(R.id.spinner_cours_eau_insc);
+        //spinner_validation = findViewById(R.id.spinner_validation);
+        //spinner_chef_group = findViewById(R.id.spinner_chef_group);
 
         mProgressView = findViewById(R.id.login_progress_insc);
         login_form = findViewById(R.id.login_form);
@@ -121,15 +120,15 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 R.array.etat_array, R.layout.optimum_simple_spinner_item);
 
         adapter_spiner.setDropDownViewResource(R.layout.optimum_spiner_dropdown);
-        spinner_validation.setAdapter(adapter_spiner);
+        //spinner_validation.setAdapter(adapter_spiner);
 
-        spinner_chef_group.setAdapter(adapter_spiner);
+        //spinner_chef_group.setAdapter(adapter_spiner);
 
         ArrayAdapter<CharSequence> adapter_spinner_cours_eau = ArrayAdapter.createFromResource(getApplicationContext(),
                 R.array.cours_d_eau_array, R.layout.optimum_simple_spinner_item);
 
         adapter_spinner_cours_eau.setDropDownViewResource(R.layout.optimum_spiner_dropdown);
-        spinner_cours_eau.setAdapter(adapter_spinner_cours_eau);
+        //spinner_cours_eau.setAdapter(adapter_spinner_cours_eau);
 
         //spinner set listenr
 
@@ -143,14 +142,14 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         postnom.setText(agriculteurs.getPostnom_a());
         phone.setText(agriculteurs.getPhone_a());
 
-        mots_de_passe.setText(agriculteurs.getMots_de_passe_a());
-        mots_de_passe_conf.setText(agriculteurs.getMots_de_passe_conf_a());
+        //mots_de_passe.setText(agriculteurs.getMots_de_passe_a());
+        //mots_de_passe_conf.setText(agriculteurs.getMots_de_passe_conf_a());
         adresse.setText(agriculteurs.getAdresse_a());
         plantation.setText(agriculteurs.getPlantation_a());
 
         //add value to spinners
-        spinner_validation.setSelection((agriculteurs.getIs_validate_a() == 0 ? 0 : 1));
-        spinner_chef_group.setSelection((agriculteurs.getIs_chef_group() == 0 ? 0 : 1));
+        //spinner_validation.setSelection((agriculteurs.getIs_validate_a() == 0 ? 0 : 1));
+        //spinner_chef_group.setSelection((agriculteurs.getIs_chef_group() == 0 ? 0 : 1));
 
     }
 
@@ -234,8 +233,8 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         phone.setError(null);
         //radio_male.setError(null);
         //radio_female.setError(null);
-        mots_de_passe.setError(null);
-        mots_de_passe_conf.setError(null);
+        //mots_de_passe.setError(null);
+        //mots_de_passe_conf.setError(null);
         adresse.setError(null);
         plantation.setError(null);
 
@@ -247,14 +246,14 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         //String gender_group_ = gender_group.getText().toString().trim();
         //String radio_male_ = radio_male.getText().toString().trim();
         //String radio_female_ = radio_female.getText().toString().trim();
-        String mots_de_passe_ = mots_de_passe.getText().toString().trim();
-        String mots_de_passe_conf_ = mots_de_passe_conf.getText().toString().trim();
+        //String mots_de_passe_ = mots_de_passe.getText().toString().trim();
+        //String mots_de_passe_conf_ = mots_de_passe_conf.getText().toString().trim();
         String adresse_ = adresse.getText().toString().trim();
         String plantation_ = plantation.getText().toString().trim();
         //String spinner_cours_eau_ = spinner_cours_eau.getText().toString().trim();
 
         //spinner get values
-        int isValidte = spinner_validation.getSelectedItemPosition();
+        //int isValidte = spinner_validation.getSelectedItemPosition();
 
         boolean cancel = false;
         View focusView = null;
@@ -275,7 +274,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             focusView = phone;
             cancel = true;
         }
-        if (!TextUtils.isEmpty(mots_de_passe_) && !isNameValid(mots_de_passe_)) {
+        /*if (!TextUtils.isEmpty(mots_de_passe_) && !isNameValid(mots_de_passe_)) {
             mots_de_passe.setError(getString(R.string.error_invalid_password));
             focusView = mots_de_passe;
             cancel = true;
@@ -285,7 +284,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             focusView = mots_de_passe_conf;
             cancel = true;
         }
-
+*/
         if (!TextUtils.isEmpty(adresse_) && !isAddressValid(adresse_)) {
             adresse.setError(getString(R.string.error_invalid_adress));
             focusView = adresse;
@@ -308,11 +307,10 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             mAuthTask = new UserUpdateTask(nom_,
                     postnom_,
                     phone_,
-                    mots_de_passe_,
-                    mots_de_passe_conf_,
+                    //                  mots_de_passe_,
+                    //                mots_de_passe_conf_,
                     adresse_,
-                    plantation_,
-                    isValidte);
+                    plantation_);
             mAuthTask.execute((Void) null);
         }
 
@@ -334,8 +332,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         private boolean gender_;
 
 
-        public UserUpdateTask(String nom_, String postnom_, String phone_, String mots_de_passe_,
-                              String mots_de_passe_conf_, String adresse_, String plantation_, int isValidate_) {
+        public UserUpdateTask(String nom_, String postnom_, String phone_, String adresse_, String plantation) {
             this.nom_ = nom_;
             this.postnom_ = postnom_;
             this.phone_ = phone_;

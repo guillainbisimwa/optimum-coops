@@ -1,7 +1,10 @@
 package com.weza_lab.benenfance.optimumcoops.credit;
 
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -29,7 +32,9 @@ public class Main_credit extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
 
     private String mPhone, mName;
-    private int mType;
+    private int mType, user_categorie;
+
+    private CreditListRecyclerViewFragment creditListRecyclerViewFragment;
 
     @Override
     public void onBackPressed() {
@@ -42,6 +47,7 @@ public class Main_credit extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +78,20 @@ public class Main_credit extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         }
 
+        /**
+         * Admin no contact Loan  (No fab add loan for admin)
+         **/
         floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setImageResource(R.drawable.ic_add_black_24dp);
+
+        //Categorize all users
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences(getResources().getString(R.string.application_key),
+                Context.MODE_PRIVATE);
+        user_categorie = prefs.getInt(getResources().getString(R.string.g_name), 99);
+        if (user_categorie == 99) {
+            floatingActionButton.setVisibility(View.INVISIBLE);
+        }
+
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
