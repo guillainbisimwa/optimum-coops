@@ -89,7 +89,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_EditUser);
+        setContentView(R.layout.activity_edituser);
 
         // intent get phone number
         Intent intent = this.getIntent();
@@ -129,6 +129,12 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         spinner_validation = findViewById(R.id.spinner_validation);
         spinner_chef_group = findViewById(R.id.spinner_chef_group);
 
+        //les layouts de difference etntre les utilisateurs
+        plantation_layout = findViewById(R.id.plantation_layout);
+        domaine_layout = findViewById(R.id.domaine_layout);
+        employeur_layout = findViewById(R.id.employeur_layout);
+        entreprise_layout = findViewById(R.id.entreprise_layout);
+
         plantation = findViewById(R.id.plantation_insc);
         domaine = findViewById(R.id.domaine);
         employeur = findViewById(R.id.employeur);
@@ -152,11 +158,13 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
 
         spinner_chef_group.setAdapter(adapter_spiner);
 
+
         ArrayAdapter<CharSequence> adapter_spiner_type = ArrayAdapter.createFromResource(getApplicationContext(),
                 R.array.type_users, R.layout.optimum_simple_spinner_item);
 
         adapter_spiner_type.setDropDownViewResource(R.layout.optimum_spiner_dropdown);
-        type_spinner.setAdapter(adapter_spiner);
+        type_spinner.setAdapter(adapter_spiner_type);
+        type_spinner.setEnabled(false);
 
         //completer les valeurs de tous les champs
         dbQueries.open();
@@ -571,6 +579,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             //dbQueries.updateAgriculteur()
             //check if phone number exists
             //if (!dbQueries.checkPersonne(phone_)) {
+            dbQueries.open();
 
             if (default_type_ == 100) {
                 Agriculteurs agriculteurs = new Agriculteurs(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
@@ -579,7 +588,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 if (dbQueries.updateAgriculteur(agriculteurs, phone_)) {
                     //dbQueries.insertAgriculteur(agriculteurs);
                 } else {
-                    dbQueries.close();
+                    //dbQueries.close();
                     return false;
                 }
             } else if (default_type_ == 101) {
@@ -589,7 +598,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 if (dbQueries.updatePetit_com(petit_commercant, phone_)) {
                     //dbQueries.insertPetit_com(petit_commercant);
                 } else {
-                    dbQueries.close();
+                    //dbQueries.close();
                     return false;
                 }
             } else if (default_type_ == 102) {
@@ -599,7 +608,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 if (dbQueries.updateEmployer(employer, phone_)) {
                     //dbQueries.insertEmployer(employer);
                 } else {
-                    dbQueries.close();
+                    //dbQueries.close();
                     return false;
                 }
             } else if (default_type_ == 103) {
@@ -609,7 +618,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 if (dbQueries.updateEntrepreneur(entrepreneurs, phone_)) {
                     //dbQueries.insertEntrepreneur(entrepreneurs);
                 } else {
-                    dbQueries.close();
+                    //dbQueries.close();
                     return false;
                 }
             }
@@ -629,13 +638,12 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
 
             if (success) {
                 Toast.makeText(getApplicationContext(), "MODIFICATION AVEC SUCCESS", Toast.LENGTH_SHORT).show();
-                //shared preference
                 finish();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
 
             } else {
-                Toast.makeText(getApplicationContext(), "Erreur, ce numero de telephone existe deja", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Erreur de modification, ce numero de telephone existe deja", Toast.LENGTH_LONG).show();
 
                 //mPasswordView.setError(getString(R.string.error_incorrect_password));
                 //mPasswordView.requestFocus();
