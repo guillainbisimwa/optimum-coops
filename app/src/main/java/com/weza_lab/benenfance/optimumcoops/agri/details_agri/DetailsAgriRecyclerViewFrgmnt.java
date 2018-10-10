@@ -88,7 +88,9 @@ public class DetailsAgriRecyclerViewFrgmnt extends Fragment implements SwipeRefr
         List<Personnes> items = new ArrayList<>();
 
         dbQueries.open();
-        items.add(dbQueries.readOnePersonnes(mPhone));
+        //items.add(dbQueries.readOnePersonnes(mPhone));
+        items.add(dbQueries.readOnePersonnesByGroup(mPhone));
+
         dbQueries.close();
 
         swipeRefreshLayout.setOnRefreshListener(this);

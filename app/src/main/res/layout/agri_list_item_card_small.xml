@@ -76,8 +76,9 @@
 
             <ImageView
                 android:id="@+id/state_a"
-                android:layout_width="110sp"
-                android:layout_height="match_parent"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:contentDescription="@string/app_name"
                 app:srcCompat="@drawable/ic_lock_outline_black_24dp"

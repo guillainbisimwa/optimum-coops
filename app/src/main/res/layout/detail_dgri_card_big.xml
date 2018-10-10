@@ -240,6 +240,34 @@
                                 tools:ignore="VectorDrawableCompat" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="2dp"
+                            android:layout_marginLeft="10px"
+                            android:layout_weight="2"
+                            android:background="@color/cardview_shadow_end_color"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="2"
+                                android:gravity="left"
+                                android:text="Groupe"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/_group_details"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:gravity="left"
+                                android:text="Rutchuru" />
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
 

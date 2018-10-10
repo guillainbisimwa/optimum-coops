@@ -27,6 +27,7 @@ import com.weza_lab.benenfance.optimumcoops.fragment.DealRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.GroupRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.PersRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.RecyclerViewFragment;
+import com.weza_lab.benenfance.optimumcoops.group.Add_group;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -180,7 +181,8 @@ public class MainActivity extends DrawerActivity {
                                     @Override
                                     public void onClick(View v) {
                                         mViewPager.notifyHeaderChanged();
-                                        Toast.makeText(getApplicationContext(), "Clic sur fab group", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getBaseContext(), Add_group.class));
+                                        //Toast.makeText(getApplicationContext(), "Clic sur fab group", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }

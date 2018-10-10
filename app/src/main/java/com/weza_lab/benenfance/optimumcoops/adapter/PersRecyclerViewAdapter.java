@@ -1,6 +1,7 @@
 package com.weza_lab.benenfance.optimumcoops.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -25,10 +26,6 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
     final List<Personnes> contents;
     final private Context mContext;
 
-    /*//bd
-    static final DBQueries dbQueries;
-    static final DBHelper dbHelper;
-*/
     public PersRecyclerViewAdapter(List<Personnes> contents, Context mContext) {
         this.contents = contents;
         this.mContext = mContext;
@@ -72,16 +69,13 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
         return null;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Personnes a = contents.get(position);
         holder.mUname.setText(a.getNom_a() + " " + a.getPostnom_a());
         holder.mPhone.setText(a.getPhone_a());
         holder.uImage.setImageResource(R.drawable.ic_person_black_24dp);
-        if (a.getIs_validate_a() == 1)
-            holder.stateImage.setImageResource(R.drawable.ic_lock_open_black_24dp);
-        else
-            holder.stateImage.setImageResource(R.drawable.ic_lock_outline_black_24dp);
 
         if (a.getDefault_type() == 100)
             holder.mType.setText("Agriculteurs");
@@ -91,6 +85,14 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
             holder.mType.setText("Employer");
         else if (a.getDefault_type() == 103)
             holder.mType.setText("Entrepreneur");
+
+        if (a.getIs_validate_a() == 1) {
+            holder.stateImage.setImageResource(R.drawable.ic_lock_open_black_24dp);
+            holder.mType.setTextColor(R.color.green);
+        } else {
+            holder.stateImage.setImageResource(R.drawable.ic_lock_outline_black_24dp);
+            holder.mType.setTextColor(R.color.red);
+        }
 
 
         switch (getItemViewType(position)) {

@@ -74,6 +74,7 @@ public class DetailAgriRecyclerViewAdapter extends RecyclerView.Adapter<DetailAg
         holder._sexe_details.setText(a.getGender_a());
         holder._phone_details.setText(a.getPhone_a());
         holder._adress_details.setText(a.getAdresse_a());
+        holder._group_details.setText(a.getName_group());
         if (a.getIs_validate_a() == 1)
             holder._pic_etat_details.setImageResource(R.drawable.ic_lock_open_black_24dp);
         else holder._pic_etat_details.setImageResource(R.drawable.ic_lock_outline_black_24dp);
@@ -104,6 +105,7 @@ public class DetailAgriRecyclerViewAdapter extends RecyclerView.Adapter<DetailAg
         public final TextView _sexe_details;
         public final TextView _phone_details;
         public final TextView _adress_details;
+        public final TextView _group_details;
 
         private int position = 0;
         private boolean isVisible;
@@ -119,6 +121,7 @@ public class DetailAgriRecyclerViewAdapter extends RecyclerView.Adapter<DetailAg
             _phone_details = view.findViewById(R.id._phone_details);
             _adress_details = view.findViewById(R.id._adress_details);
             _pic_etat_details = view.findViewById(R.id._pic_etat_details);
+            _group_details = view.findViewById(R.id._group_details);
 
             isVisible = false;
             view.setOnClickListener(this);

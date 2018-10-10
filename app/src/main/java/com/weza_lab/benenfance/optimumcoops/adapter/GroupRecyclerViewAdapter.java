@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weza_lab.benenfance.optimumcoops.R;
-import com.weza_lab.benenfance.optimumcoops.pojo.Groupes;
+import com.weza_lab.benenfance.optimumcoops.pojo.Groups;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
     static final int TYPE_HEADER = 0;
     static final int TYPE_CELL = 1;
     final private Context mContext;
-    List<Groupes> contents;
+    List<Groups> contents;
 
-    public GroupRecyclerViewAdapter(List<Groupes> contents, Context mContext) {
+    public GroupRecyclerViewAdapter(List<Groups> contents, Context mContext) {
         this.contents = contents;
         this.mContext = mContext;
     }
@@ -68,10 +68,33 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Groupes a = contents.get(position);
-        holder.gUname.setText(a.getName_g());
-        holder.gId.setText(a.getAdresse_g());
-        holder.gImage.setImageResource(R.drawable.pic33);
+        Groups a = contents.get(position);
+        holder.gUname.setText(a.getName_group());
+        holder.gAdress.setText(a.getAdress_group());
+
+        if (a.getType_group() == 100) {
+            //agri
+            holder.gImage.setImageResource(R.drawable.pic33);
+            holder.gNbr.setText(a.getNbr_users() + " agriculteurs");
+        }
+        if (a.getType_group() == 101) {
+            //petiy com
+            holder.gImage.setImageResource(R.drawable.pic2);
+            holder.gNbr.setText(a.getNbr_users() + " commercants");
+
+        }
+        if (a.getType_group() == 102) {
+            //empl
+            holder.gImage.setImageResource(R.drawable.pic4);
+            holder.gNbr.setText(a.getNbr_users() + " employers");
+
+        }
+        if (a.getType_group() == 103) {
+            //entre
+            holder.gImage.setImageResource(R.drawable.pic5);
+            holder.gNbr.setText(a.getNbr_users() + " entrepreneurs");
+
+        }
         switch (getItemViewType(position)) {
             case TYPE_HEADER:
                 break;
@@ -83,7 +106,7 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final View mView;
         public final ImageView gImage;
-        public final TextView gUname, gId;
+        public final TextView gUname, gAdress, gNbr;
 
         private int position = 0;
         private boolean isVisible;
@@ -93,7 +116,8 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
             mView = view;
             gImage = view.findViewById(R.id.gImage);
             gUname = view.findViewById(R.id.gName);
-            gId = view.findViewById(R.id.gId);
+            gAdress = view.findViewById(R.id.gAdress);
+            gNbr = view.findViewById(R.id.gNbr);
 
             isVisible = false;
 

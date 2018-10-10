@@ -122,6 +122,7 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
         employeur_layout = findViewById(R.id.employeur_layout);
         entreprise_layout = findViewById(R.id.entreprise_layout);
 
+        plantation = findViewById(R.id.plantation);
         domaine = findViewById(R.id.domaine);
         employeur = findViewById(R.id.employeur);
         entreprise = findViewById(R.id.entreprise);

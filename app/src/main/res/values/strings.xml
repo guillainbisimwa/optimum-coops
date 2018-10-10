@@ -99,14 +99,17 @@
 
     <!--ENREGISTRATION-->
     <string name="inscrivez_vous">Inscription</string>
+    <string name="ajouter">Ajouter</string>
     <!-- AGRICULTEURS-->
     <string name="nom">Nom</string>
+    <string name="nom_group">Nom du groupe</string>
     <string name="prenom">Prenom</string>
     <string name="phone">Telephone</string>
     <string name="password">Mots de passe</string>
     <string name="password_confirm">Confirmer mots de passe</string>
     <string name="sexe">Sexe</string>
     <string name="adresse">Adresse</string>
+    <string name="adresse_group">Adresse du groupe</string>
     <string name="dimension_champs">Plantation(Dimension en H)</string>
     <string name="domaine">Domaine du commerce</string>
     <string name="employeur">Quel est votre employeur?</string>
@@ -121,6 +124,9 @@
     <string name="error_invalid_month">La valeur doit etre ente 1 et 12 </string>
     <string name="etat">Etat de validation</string>
     <string name="chef_group">Chef du groupe</string>
+    <string name="group">Groupes</string>
+
+    <string name="add_group">Ajouter un groupe</string>
 
 
     <string name="taux">Taux d\'interet</string>

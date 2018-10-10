@@ -17,9 +17,10 @@ import android.widget.Toast;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.weza_lab.benenfance.optimumcoops.R;
 import com.weza_lab.benenfance.optimumcoops.adapter.GroupRecyclerViewAdapter;
-import com.weza_lab.benenfance.optimumcoops.pojo.Groupes;
+import com.weza_lab.benenfance.optimumcoops.database.DBHelper;
+import com.weza_lab.benenfance.optimumcoops.database.DBQueries;
+import com.weza_lab.benenfance.optimumcoops.pojo.Groups;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -27,7 +28,6 @@ import butterknife.ButterKnife;
 public class GroupRecyclerViewFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final boolean GRID_LAYOUT = true;
-    private static final int ITEM_COUNT = 15;
 
     //@BindView(R.id.recyclerView)
     private RecyclerView mRecyclerView;
@@ -35,6 +35,13 @@ public class GroupRecyclerViewFragment extends Fragment implements SwipeRefreshL
     private CoordinatorLayout coordinatorLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
     private View emptyView;
+
+    private DBQueries dbQueries;
+    private DBHelper dbHelper;
+
+    private Groups groups;
+    private List<Groups> items;
+
 
     public static GroupRecyclerViewFragment newInstance() {
         return new GroupRecyclerViewFragment();
@@ -47,12 +54,12 @@ public class GroupRecyclerViewFragment extends Fragment implements SwipeRefreshL
         Context context = view.getContext();
         mRecyclerView = view.findViewById(R.id.recyclerView);
 
+        dbQueries = new DBQueries(getContext());
+        dbHelper = new DBHelper(getContext());
+
         coordinatorLayout = view.findViewById(R.id.coordinator);
         swipeRefreshLayout = view.findViewById(R.id.refresh);
-
-        //return inflater.inflate(R.layout.fragment_recyclerview, container, false);
         return view;
-        //return inflater.inflate(R.layout.fragment_recyclerview, container, false);
     }
 
     @Override
@@ -60,18 +67,12 @@ public class GroupRecyclerViewFragment extends Fragment implements SwipeRefreshL
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        final List<Groupes> items = new ArrayList<>();
+        groups = new Groups();
+        dbQueries.open();
+        //items = dbQueries.readGroup();
+        items = dbQueries.readGroupWithNbr();
+        dbQueries.close();
 
-        items.add(new Groupes(1, "Groupe 1", "MUMOSHO 1"));
-        /*items.add(new Groupes(2,"Groupe 2","MASISI 1"));
-        items.add(new Groupes(3,"Groupe 3","WALOKALE 1"));
-        items.add(new Groupes(4,"Groupe 4","SHABUNDA 1"));
-        items.add(new Groupes(5,"Groupe 5","BEMI 1"));
-        items.add(new Groupes(6,"Groupe 6","LUBERO 1"));
-        items.add(new Groupes(7,"Groupe 7","RUTHURU 1"));
-*/
-
-        //setup materialviewpager
         swipeRefreshLayout.setOnRefreshListener(this);
         if (!items.isEmpty()) {
             //Toast.makeText(getContext(), items.size() + " Groupe(s)", Toast.LENGTH_LONG).show();
@@ -98,6 +99,18 @@ public class GroupRecyclerViewFragment extends Fragment implements SwipeRefreshL
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
+                dbQueries.open();
+                //items = dbQueries.readGroup();
+                items = dbQueries.readGroupWithNbr();
+                dbQueries.close();
+
+                if (!items.isEmpty()) {
+                    emptyView.setVisibility(View.INVISIBLE);
+                } else {
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+
+                mRecyclerView.setAdapter(new GroupRecyclerViewAdapter(items, getContext()));
                 swipeRefreshLayout.setRefreshing(false);
             }
         });

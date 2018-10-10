@@ -5,10 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -43,7 +45,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             Pattern.CASE_INSENSITIVE);
 
     private Spinner spinner_chef_group, spinner_validation;
-    private Spinner type_spinner;
+    private Spinner type_spinner, spinner_group;
     private ScrollView login_form;
     private AutoCompleteTextView nom;
     private AutoCompleteTextView postnom;
@@ -128,6 +130,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         //spinner_cours_eau = findViewById(R.id.spinner_cours_eau_insc);
         spinner_validation = findViewById(R.id.spinner_validation);
         spinner_chef_group = findViewById(R.id.spinner_chef_group);
+        spinner_group = findViewById(R.id.spinner_group);
 
         //les layouts de difference etntre les utilisateurs
         plantation_layout = findViewById(R.id.plantation_layout);
@@ -162,12 +165,32 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         ArrayAdapter<CharSequence> adapter_spiner_type = ArrayAdapter.createFromResource(getApplicationContext(),
                 R.array.type_users, R.layout.optimum_simple_spinner_item);
 
+
         adapter_spiner_type.setDropDownViewResource(R.layout.optimum_spiner_dropdown);
         type_spinner.setAdapter(adapter_spiner_type);
         type_spinner.setEnabled(false);
+        //spinner group
+        //ArrayAdapter<CharSequence> a = ArrayAdapter<Cursor>{
+        //populateSpinner();
+        /*ArrayAdapter<CharSequence> adapter_spiner_ = ArrayAdapter.createFromResource(getApplicationContext(),
+                R.array.etat_array, R.layout.optimum_simple_spinner_item);
+
+        adapter_spiner.setDropDownViewResource(R.layout.optimum_spiner_dropdown);
+        spinner_validation.setAdapter(adapter_spiner);
+        //spinner_group.setAdapter(adapter_spiner);*/
 
         //completer les valeurs de tous les champs
         dbQueries.open();
+
+        Cursor cursor = dbQueries.readGroupCursor();
+        //pupulateSpinnerGroup(cursor);
+        populateSpinner();
+        /*String[] fromColumns = new String[]{"name_group"};
+        int[] toColums = new int[]{android.R.id.text1};
+        SimpleCursorAdapter s = new SimpleCursorAdapter(this,android.R.layout.simple_spinner_item, cursor, fromColumns,toColums);
+        s.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_group.setAdapter(s);*/
+
         personnes = dbQueries.readOnePersonnes(mPhone);
 
         nom.setText(personnes.getNom_a());
@@ -256,6 +279,47 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             login_form.setVisibility(show ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    public void pupulateSpinnerGroup(Cursor cursor) {
+
+        //dbQueries2.open();
+        //Cursor cursor = dbQueries.readGroupCursor2();
+        String[] fromColumns = new String[]{"name_group"};
+        int[] toColums = new int[]{android.R.id.text1};
+        SimpleCursorAdapter s = new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, cursor, fromColumns, toColums);
+        s.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_group.setAdapter(s);
+
+    }
+
+    public void populateSpinner() {
+        dbQueries.open();
+        String[] fromColumns = new String[]{"name_group"};
+        int[] toColums = new int[]{android.R.id.text1};
+        //String[] fromColumns = null;
+
+        // View IDs to map the columns (fetched above) into
+        int[] toViews = {
+                android.R.id.text1
+        };
+        Cursor cursor = dbQueries.readGroupCursor2();
+        if (cursor != null) {
+            SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+                    this, // context
+                    android.R.layout.simple_spinner_item, // layout file
+                    cursor, // DB cursor
+                    fromColumns, // data to bind to the UI
+                    toViews, // views that'll represent the data from `fromColumns`
+                    0
+            );
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            // Create the list view and bind the adapter
+            spinner_group.setAdapter(adapter);
+            dbQueries.close();
         }
     }
 

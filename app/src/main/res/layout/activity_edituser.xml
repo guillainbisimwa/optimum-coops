@@ -416,7 +416,31 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:theme="@style/themeSpinner_inv" />
+                                </LinearLayout>
 
+                                <LinearLayout
+                                    android:id="@+id/spiner_layout_group"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/group"
+                                        android:textColor="@color/grey_600"
+                                        android:textColorHighlight="@color/grey_300"
+                                        android:textColorHint="@color/grey_300"
+                                        android:textSize="16sp" />
+
+                                    <Spinner
+                                        android:id="@+id/spinner_group"
+                                        style="@style/Widget.AppCompat.Spinner.Underlined"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:theme="@style/themeSpinner_inv" />
                                 </LinearLayout>
 
 

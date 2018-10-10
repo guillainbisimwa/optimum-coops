@@ -256,6 +256,26 @@ class DBConstants {
             COLUMN_ID_CREDIT_TRANCHE + " INTEGER, " +
             COLUMN_DATE_TRANCHE + " TEXT " +
             " ); ";
+    /**
+     * GROUPE TABLE
+     **/
+
+    static final String TABLE_NAME_GROUP = "groups";
+
+    static final String COLUMN_ID_GROUP = "_id";
+    static final String COLUMN_NAME_GROUP = "name_group";
+    static final String COLUMN_ADRESS_GROUP = "adress_group";
+    static final String CONTACT_PHOTO_GROUP = "contact_photo_group";
+    static final String COLUMN_TYPE_GROUP = "type_group";
+
+
+    static final String CREATE_TABLE_GROUP = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_GROUP + " ( " +
+            COLUMN_ID_GROUP + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_NAME_GROUP + " TEXT, " +
+            COLUMN_ADRESS_GROUP + " TEXT, " +
+            CONTACT_PHOTO_GROUP + " BLOB DEFAULT NULL, " +
+            COLUMN_TYPE_GROUP + " INTEGER " +
+            " ); ";
 
     /**
      * LES REQUETES
@@ -272,6 +292,10 @@ class DBConstants {
     static final String SELECT_CREDIT_QUERY = "SELECT * FROM " + TABLE_NAME_CREDIT;
     static final String SELECT_PAYMENT_QUERY = "SELECT * FROM " + TABLE_NAME_PAYMENT;
     static final String SELECT_TRANCHE_QUERY = "SELECT * FROM " + TABLE_NAME_TRANCHE;
+
+    static final String SELECT_GROUP_QUERY = "SELECT * FROM " + TABLE_NAME_GROUP;
+    static final String SELECT_GROUP_ID_QUERY = "SELECT " + COLUMN_ID_GROUP + " AS _id, " +
+            "" + COLUMN_NAME_GROUP + " FROM " + TABLE_NAME_GROUP;
 
 
 }
