@@ -72,6 +72,7 @@ public class DBQueries {
         contentValues.put(DBConstants.COLUMN_IS_SYNC_AGRI, agriculteurs.getIs_sync_a());
         contentValues.put(DBConstants.COLUMN_IS_VALIDATE_AGRI, agriculteurs.getIs_validate_a());
         contentValues.put(DBConstants.COLUMN_IS_UPDATE_AGRI, agriculteurs.getIs_update_a());
+        contentValues.put(DBConstants.COLUMN_ID_GROUP_AGRI, agriculteurs.getId_group());
 
         return database.update(DBConstants.TABLE_NAME_AGRICULTEURS, contentValues, DBConstants.COLUMN_PHONE_AGRI + " = ? ", new String[]
                 {String.valueOf(mPhone)}) > -1;
@@ -344,6 +345,7 @@ public class DBQueries {
         contentValues.put(DBConstants.COLUMN_IS_SYNC_PETI_COM, petit_commercant.getIs_sync_a());
         contentValues.put(DBConstants.COLUMN_IS_VALIDATE_PETI_COM, petit_commercant.getIs_validate_a());
         contentValues.put(DBConstants.COLUMN_IS_UPDATE_PETI_COM, petit_commercant.getIs_update_a());
+        contentValues.put(DBConstants.COLUMN_ID_GROUP_PETI_COM, petit_commercant.getId_group());
 
         return database.update(DBConstants.TABLE_NAME_PETIT_COM, contentValues, DBConstants.COLUMN_PHONE_PETI_COM + " = ? ", new String[]
                 {String.valueOf(mPhone)}) > -1;
@@ -445,6 +447,7 @@ public class DBQueries {
         contentValues.put(DBConstants.COLUMN_IS_SYNC_EMPLOYER, employer.getIs_sync_a());
         contentValues.put(DBConstants.COLUMN_IS_VALIDATE_EMPLOYER, employer.getIs_validate_a());
         contentValues.put(DBConstants.COLUMN_IS_UPDATE_EMPLOYER, employer.getIs_update_a());
+        contentValues.put(DBConstants.COLUMN_ID_GROUP_EMPLOYER, employer.getId_group());
 
         return database.update(DBConstants.TABLE_NAME_EMPLOYER, contentValues, DBConstants.COLUMN_PHONE_EMPLOYER + " = ? ", new String[]
                 {String.valueOf(mPhone)}) > -1;
@@ -547,6 +550,7 @@ public class DBQueries {
         contentValues.put(DBConstants.COLUMN_IS_SYNC_ENTREPRENEUR, entrepreneurs.getIs_sync_a());
         contentValues.put(DBConstants.COLUMN_IS_VALIDATE_ENTREPRENEUR, entrepreneurs.getIs_validate_a());
         contentValues.put(DBConstants.COLUMN_IS_UPDATE_ENTREPRENEUR, entrepreneurs.getIs_update_a());
+        contentValues.put(DBConstants.COLUMN_ID_GROUP_ENTREPRENEUR, entrepreneurs.getId_group());
 
         return database.update(DBConstants.TABLE_NAME_ENTREPRENEUR, contentValues, DBConstants.COLUMN_PHONE_ENTREPRENEUR + " = ? ", new String[]
                 {String.valueOf(mPhone)}) > -1;
@@ -941,10 +945,7 @@ public class DBQueries {
                                     conPhoto_a, id_group_a, default_type_a, is_chief_group_a);
                             p = personnes;
                             pp++;
-                            break;
                         }
-
-
                     } while (cursor_a.moveToNext());
                 }
             }
@@ -980,10 +981,7 @@ public class DBQueries {
                                     conPhoto_P, id_group_P, default_type_P, is_chief_group_P);
                             p = personnes;
                             pp++;
-                            break;
                         }
-
-
                     } while (cursor_p.moveToNext());
                 }
             }
@@ -1018,10 +1016,7 @@ public class DBQueries {
                                     conPhoto_em, id_group_em, default_type_em, is_chief_group_em);
                             p = personnes;
                             pp++;
-                            break;
                         }
-
-
                     } while (cursor_em.moveToNext());
                 }
             }
@@ -1055,10 +1050,7 @@ public class DBQueries {
                                     conPhoto_entre, id_group_entre, default_type_entre, is_chief_group_entre);
                             p = personnes;
                             pp++;
-                            break;
                         }
-
-
                     } while (cursor_entre.moveToNext());
                 }
             }
@@ -1120,7 +1112,7 @@ public class DBQueries {
                         if (mPhone.equals(phone_a)) {
                             Personnes personnes = new Personnes(id_a, nom_a, phone_a, postnom_a, gender_a, mots_de_passe_a,
                                     mots_de_passe_conf_a, adresse_a, is_sync_a, is_validate_a, is_update_a,
-                                    conPhoto_a, default_type_a, is_chief_group_a, name_group);
+                                    conPhoto_a, id_group_a, default_type_a, is_chief_group_a, name_group);
                             p = personnes;
                             pp++;
                             break;
@@ -1162,7 +1154,7 @@ public class DBQueries {
                         if (mPhone.equals(phone_P)) {
                             Personnes personnes = new Personnes(id_P, nom_P, phone_P, postnom_P, gender_P, mots_de_passe_P,
                                     mots_de_passe_conf_P, adresse_P, is_sync_P, is_validate_P, is_update_P,
-                                    conPhoto_P, default_type_P, is_chief_group_P, name_group);
+                                    conPhoto_P, id_group_P, default_type_P, is_chief_group_P, name_group);
                             p = personnes;
                             pp++;
                             break;
@@ -1204,7 +1196,7 @@ public class DBQueries {
                         if (mPhone.equals(phone_em)) {
                             Personnes personnes = new Personnes(id_em, nom_em, phone_em, postnom_em, gender_em, mots_de_passe_em,
                                     mots_de_passe_conf_em, adresse_em, is_sync_em, is_validate_em, is_update_em,
-                                    conPhoto_em, default_type_em, is_chief_group_em, name_group);
+                                    conPhoto_em, id_group_em, default_type_em, is_chief_group_em, name_group);
                             p = personnes;
                             pp++;
                             break;
@@ -1245,7 +1237,7 @@ public class DBQueries {
                         if (mPhone.equals(phone_entre)) {
                             Personnes personnes = new Personnes(id_entre, nom_entre, phone_entre, postnom_entre, gender_entre, mots_de_passe_entre,
                                     mots_de_passe_conf_entre, adresse_entre, is_sync_entre, is_validate_entre, is_update_entre,
-                                    conPhoto_entre, default_type_entre, is_chief_group_entre, name_group);
+                                    conPhoto_entre, id_group_entre, default_type_entre, is_chief_group_entre, name_group);
                             p = personnes;
                             pp++;
                             break;
@@ -1924,23 +1916,57 @@ public class DBQueries {
         return name_;
     }
 
-
-    public Cursor readGroupCursor2() {
-        database = dbHelper.getReadableDatabase();
-        Cursor cursor = database.rawQuery(DBConstants.SELECT_GROUP_QUERY, null);
-        cursor.close();
-        return cursor;
-    }
-
-    public Cursor readGroupCursor() {
-        Cursor cursor = null;
+    public Groups readGroupByName(String name_) {
+        Groups g = new Groups();
         try {
+            Cursor cursor;
             database = dbHelper.getReadableDatabase();
             cursor = database.rawQuery(DBConstants.SELECT_GROUP_QUERY, null);
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_GROUP));
+                        String name = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_NAME_GROUP));
+                        String adress = cursor.getString(cursor.getColumnIndex(DBConstants.COLUMN_ADRESS_GROUP));
+                        byte[] photo_profile = cursor.getBlob(cursor.getColumnIndex(DBConstants.CONTACT_PHOTO_GROUP));
+                        int type = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_TYPE_GROUP));
+
+                        //Get users' number
+                        int nbr_by_group = readOneNbrPersonnesByGroup(id);
+                        if (name.equals(name_)) {
+                            g = new Groups(id, name_, adress, null, type, nbr_by_group);
+                            break;
+                        }
+                    } while (cursor.moveToNext());
+                }
+            }
             cursor.close();
         } catch (Exception e) {
             Log.v("Exception", e.getMessage());
         }
+        return g;
+    }
+
+    public Cursor readGroupCursors() {
+        Cursor cursor;
+        database = dbHelper.getReadableDatabase();
+        cursor = database.rawQuery(DBConstants.SELECT_GROUP_QUERY, null);
+        return cursor;
+    }
+
+    public Cursor readOneGroupCursors(int type) {
+        //String[] params = new String[]{type};
+        Cursor cursor;
+        database = dbHelper.getReadableDatabase();
+        cursor = database.rawQuery(DBConstants.SELECT_GROUP_QUERY + " WHERE type_group = " + type, null);
+       /* if (cursor.getCount() > 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(DBConstants.COLUMN_ID_GROUP));
+                }while (cursor.moveToNext());
+            }
+        }*/
+
         return cursor;
     }
 

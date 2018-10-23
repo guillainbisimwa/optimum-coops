@@ -10,10 +10,12 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.ConflictException;
+import com.googlecode.objectify.ObjectifyService;
 
 import javax.inject.Named;
 
-import static com.example.Guillain.myapplication.backend.OfyHelper.ofy;
+//import static com.example.Guillain.myapplication.backend.OfyHelper.ofy;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
 /**
  * An endpoint class we are exposing
@@ -40,6 +42,7 @@ public class MyEndpoint {
         return response;
     }
 
+
     @ApiMethod(name = "enregistrerAbonnees")
     public Abonnees enregistrerAbonnees(@Named("login") String login, @Named("compteur") String compteur,
                                         @Named("identite") String identite, @Named("sommes") String sommes) throws ConflictException {
@@ -53,12 +56,13 @@ public class MyEndpoint {
         }
         //Since our @Id field is a Long, Objectify will generate a unique value for us
         //when we use put
-        ofy().save().entity(abonne).now();
+        //bjectifyService.init();
+        ObjectifyService.ofy().save().entity(abonne).now();
         return abonne;
     }
 
     private Abonnees findRecord(Long id) {
-        return ofy().load().type(Abonnees.class).id(id).now();
+        return ObjectifyService.ofy().load().type(Abonnees.class).id(id).now();
         //or return ofy().load().type(Historique.class).filter("id",id).first.now();
     }
 }

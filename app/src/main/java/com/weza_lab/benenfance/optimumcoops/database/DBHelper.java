@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     public static String DB_NAME = "optimum_Coops";
-    private static int DB_VERSION = 1;
+    private static int DB_VERSION = 10;
     private Context context;
 
     public DBHelper(Context context) {
@@ -42,7 +42,5 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_PAYMENT);
         db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_TRANCHE);
         db.execSQL("DROP TABLE IF EXISTS " + DBConstants.TABLE_NAME_GROUP);
-
     }
-
 }

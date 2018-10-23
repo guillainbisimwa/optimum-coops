@@ -26,8 +26,12 @@ dependencies {
     compile 'com.google.appengine:appengine-endpoints:1.9.42'
     compile 'com.google.appengine:appengine-endpoints-deps:1.9.42'
     compile 'javax.servlet:servlet-api:2.5'
-    compile 'com.googlecode.objectify:objectify:6.0.2'
-    compile group: 'com.google.guava', name: 'guava', version: '26.0-android'
+    //compile 'com.googlecode.objectify:objectify:6.0.2'
+    compile 'com.googlecode.objectify:objectify:5.1.9'
+
+    //compile group: 'com.google.guava', name: 'guava', version: '26.0-android'
+    compile 'com.google.guava:guava:19.0'
+
 }
 
 appengine {

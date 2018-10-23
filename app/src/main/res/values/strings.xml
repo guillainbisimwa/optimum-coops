@@ -56,6 +56,14 @@
     <string name="inf0_petit_com">Info sur commercant</string>
     <string name="inf0_em">Info sur l\'employer</string>
     <string name="inf0_entre">Info sur l\'entrepreneur</string>
+    <string name="inf0_group">Info sur le group</string>
+
+    <string name="user">Utilisateur</string>
+    <string name="agri">Agriculteur</string>
+    <string name="petit_com">Commercant</string>
+    <string name="em">Employer</string>
+    <string name="entre">Entrepreneurs</string>
+    <string name="_group">Groupes</string>
 
     <!--text intro-->
     <string name="item1_titre">Optimum Coops</string>

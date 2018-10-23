@@ -64,6 +64,25 @@ public class Personnes {
         this.name_group = name_group;
     }
 
+    public Personnes(int id_a, String nom_a, String phone_a, String postnom_a, String gender_a, String mots_de_passe_a, String mots_de_passe_conf_a, String adresse_a, int is_sync_a, int is_validate_a, int is_update_a, byte[] contactPhoto, int id_group, int default_type, int is_chef_group, String name_group) {
+        this.id_a = id_a;
+        this.nom_a = nom_a;
+        this.phone_a = phone_a;
+        this.postnom_a = postnom_a;
+        this.gender_a = gender_a;
+        this.mots_de_passe_a = mots_de_passe_a;
+        this.mots_de_passe_conf_a = mots_de_passe_conf_a;
+        this.adresse_a = adresse_a;
+        this.is_sync_a = is_sync_a;
+        this.is_validate_a = is_validate_a;
+        this.is_update_a = is_update_a;
+        this.contactPhoto = contactPhoto;
+        this.id_group = id_group;
+        this.default_type = default_type;
+        this.is_chef_group = is_chef_group;
+        this.name_group = name_group;
+    }
+
     public int getId_a() {
         return id_a;
     }

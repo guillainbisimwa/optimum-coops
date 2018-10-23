@@ -288,7 +288,7 @@ public class Add_group extends AppCompatActivity implements AdapterView.OnItemSe
             showProgress(false);
 
             if (success) {
-                Toast.makeText(getApplicationContext(), "GROUPE ENREGISTRER AVEC SUCCESS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "GROUPE ENREGISTRE AVEC SUCCESS", Toast.LENGTH_SHORT).show();
                 finish();
 
                 //shared preference
@@ -297,7 +297,7 @@ public class Add_group extends AppCompatActivity implements AdapterView.OnItemSe
                 //finish();
 
             } else {
-                Toast.makeText(getApplicationContext(), "Erreur, ce identifiant existe deja", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Erreur, cet identifiant existe deja", Toast.LENGTH_SHORT).show();
 
                 //mPasswordView.setError(getString(R.string.error_incorrect_password));
                 //mPasswordView.requestFocus();

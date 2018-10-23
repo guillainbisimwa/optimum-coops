@@ -16,9 +16,12 @@
 //[START all]
 package com.example.Guillain.myapplication.backend;
 
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
+
+import javax.servlet.ServletContextEvent;
 
 
 /**
@@ -27,9 +30,32 @@ import com.googlecode.objectify.ObjectifyService;
  **/
 public class OfyHelper {
 
+    /**
+     * Initialize a ServletContextListener.
+     * @param event .
+     */
+    public void contextInitialized(ServletContextEvent event) {
+        // This will be invoked as part of a warmup request, or the first user request if no warmup
+        // request.
+        ObjectifyService.register(Abonnees.class);
+        //ObjectifyService.register(Greeting.class);
+    }
+
+    public void contextDestroyed(ServletContextEvent event) {
+        // App Engine does not currently invoke this method.
+    }
+/*
     static {
         try {
+            //helper = new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig().setDefaultHighRepJobPolicyUnappliedJobPercentage(100));
+            //helper.setUp();
+            //ObjectifyService.register(MyClass.class);
+            //DatastoreServiceFactory.getDatastoreService();
+            //ObjectifyService.init();
+
             ObjectifyService.register(Abonnees.class);
+            //DatastoreServiceFactory.getDatastoreService();
+
         } catch (Exception e) {
             System.out.println("Erreur" + e.getMessage());
         }
@@ -43,6 +69,6 @@ public class OfyHelper {
 
     public static ObjectifyFactory factory() {
         return ObjectifyService.factory();
-    }
+    }*/
 }
 //[END all]

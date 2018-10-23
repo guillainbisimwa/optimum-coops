@@ -181,17 +181,10 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
 
         //completer les valeurs de tous les champs
         dbQueries.open();
-
-        Cursor cursor = dbQueries.readGroupCursor();
-        //pupulateSpinnerGroup(cursor);
-        populateSpinner();
-        /*String[] fromColumns = new String[]{"name_group"};
-        int[] toColums = new int[]{android.R.id.text1};
-        SimpleCursorAdapter s = new SimpleCursorAdapter(this,android.R.layout.simple_spinner_item, cursor, fromColumns,toColums);
-        s.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_group.setAdapter(s);*/
-
         personnes = dbQueries.readOnePersonnes(mPhone);
+
+        //Cursor cursor = dbQueries.readGroupCursors();
+        Cursor cursor = null;
 
         nom.setText(personnes.getNom_a());
         postnom.setText(personnes.getPostnom_a());
@@ -209,22 +202,41 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             type_spinner.setSelection(0);
             agriculteurs = dbQueries.readOneAgriculteurs(personnes.getPhone_a());
             plantation.setText(agriculteurs.getPlantation_a());
+
+            //GROUPS CURSOR
+            cursor = dbQueries.readOneGroupCursors(100);
         }
         if (personnes.getDefault_type() == 101) {
             type_spinner.setSelection(1);
             petit_commercant = dbQueries.readOnePetit_com(personnes.getPhone_a());
             domaine.setText(petit_commercant.getDomaine());
+
+            //GROUPS CURSOR
+            cursor = dbQueries.readOneGroupCursors(101);
         }
         if (personnes.getDefault_type() == 102) {
             type_spinner.setSelection(2);
             employer = dbQueries.readOneEmployer(personnes.getPhone_a());
             employeur.setText(employer.getEmployeur());
+
+            //GROUPS CURSOR
+            cursor = dbQueries.readOneGroupCursors(102);
         }
         if (personnes.getDefault_type() == 103) {
             type_spinner.setSelection(3);
             entrepreneurs = dbQueries.readOneEntrpreneur(personnes.getPhone_a());
             entreprise.setText(entrepreneurs.getNom_entreprise());
+
+            //GROUPS CURSOR
+            cursor = dbQueries.readOneGroupCursors(103);
         }
+
+        String[] fromColumns = new String[]{"name_group"};
+        int[] toColums = new int[]{android.R.id.text1};
+        SimpleCursorAdapter s = new SimpleCursorAdapter(this, R.layout.optimum_simple_spinner_item, cursor, fromColumns, toColums);
+        s.setDropDownViewResource(R.layout.optimum_spiner_dropdown);
+        spinner_group.setAdapter(s);
+
         dbQueries.close();
 
         type_spinner.setOnItemSelectedListener(this);
@@ -236,6 +248,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         entreprise_layout.setVisibility(View.GONE);
 
         default_type_ = 100;
+
 
     }
 
@@ -282,7 +295,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void pupulateSpinnerGroup(Cursor cursor) {
+   /* public void pupulateSpinnerGroup(Cursor cursor) {
 
         //dbQueries2.open();
         //Cursor cursor = dbQueries.readGroupCursor2();
@@ -293,9 +306,12 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         spinner_group.setAdapter(s);
 
     }
-
+*/
+/*
     public void populateSpinner() {
-        dbQueries.open();
+        dbQueries2 = new DBQueries(getApplicationContext());
+        dbHelper2 = new DBHelper(getApplicationContext());
+        dbQueries2.open();
         String[] fromColumns = new String[]{"name_group"};
         int[] toColums = new int[]{android.R.id.text1};
         //String[] fromColumns = null;
@@ -304,24 +320,23 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         int[] toViews = {
                 android.R.id.text1
         };
-        Cursor cursor = dbQueries.readGroupCursor2();
-        if (cursor != null) {
-            SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+        Cursor cursor2 = dbQueries2.readGroupCursor2();
+        if (cursor2 != null) {
+            SimpleCursorAdapter adapter2 = new SimpleCursorAdapter(
                     this, // context
                     android.R.layout.simple_spinner_item, // layout file
-                    cursor, // DB cursor
+                    cursor2, // DB cursor
                     fromColumns, // data to bind to the UI
                     toViews, // views that'll represent the data from `fromColumns`
                     0
             );
-
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+            adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             // Create the list view and bind the adapter
-            spinner_group.setAdapter(adapter);
-            dbQueries.close();
+            spinner_group.setAdapter(adapter2);
+            dbQueries2.close();
         }
     }
+*/
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -442,7 +457,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
     }
 
     private boolean isAddressValid(String adress) {
-        return adress.length() > 5;
+        return adress.length() > 3;
     }
 
     private boolean isPlantationValide(String dim) {
@@ -455,7 +470,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
     }
 
     private boolean isNameValid(String password) {
-        return password.length() > 4;
+        return password.length() > 3;
     }
 
     private void attemptUpdate() {
@@ -551,6 +566,12 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         //spinner get values
         int isValidte = spinner_validation.getSelectedItemPosition();
         int isChef = spinner_chef_group.getSelectedItemPosition();
+        //int idGroup = spinner_group.getSelectedItemPosition();
+        spinner_group.getSelectedItem();
+        Cursor cursor = (Cursor) spinner_group.getSelectedItem();
+        int idGroup = cursor.getInt(cursor.getColumnIndex("_id"));
+        String nameGroup = cursor.getString(cursor.getColumnIndex("name_group"));
+        //int ff = idGroup;
 
 
         if (cancel) {
@@ -573,7 +594,8 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                     entreprise_,
                     default_type_,
                     isValidte,
-                    isChef);
+                    isChef,
+                    idGroup);
             mAuthTask.execute((Void) null);
         }
 
@@ -597,11 +619,12 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
         private int default_type_;
         private int isValid_;
         private int isChef_;
+        private int idGroup_;
 
 
         public UserUpdateTask(String nom_, String postnom_, String phone_, String mots_de_passe_,
                               String mots_de_passe_conf_, String adresse_, String plantation_, String domaine_,
-                              String employeur_, String entreprise_, int default_type_, int isValid_, int isChef_) {
+                              String employeur_, String entreprise_, int default_type_, int isValid_, int isChef_, int idGroup_) {
             this.nom_ = nom_;
             this.postnom_ = postnom_;
             this.phone_ = phone_;
@@ -615,6 +638,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             this.default_type_ = default_type_;
             this.isValid_ = isValid_;
             this.isChef_ = isChef_;
+            this.idGroup_ = idGroup_;
         }
 
 
@@ -643,11 +667,12 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
             //dbQueries.updateAgriculteur()
             //check if phone number exists
             //if (!dbQueries.checkPersonne(phone_)) {
+            //int f = idGroup_;
             dbQueries.open();
 
             if (default_type_ == 100) {
                 Agriculteurs agriculteurs = new Agriculteurs(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, isValid_, 0, null, 0, default_type_, isChef_, plantation_);
+                        adresse_, 0, isValid_, 0, null, idGroup_, default_type_, isChef_, plantation_);
 
                 if (dbQueries.updateAgriculteur(agriculteurs, phone_)) {
                     //dbQueries.insertAgriculteur(agriculteurs);
@@ -657,7 +682,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 }
             } else if (default_type_ == 101) {
                 Petit_commercant petit_commercant = new Petit_commercant(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, isValid_, 0, null, 0, default_type_, isChef_, domaine_);
+                        adresse_, 0, isValid_, 0, null, idGroup_, default_type_, isChef_, domaine_);
 
                 if (dbQueries.updatePetit_com(petit_commercant, phone_)) {
                     //dbQueries.insertPetit_com(petit_commercant);
@@ -667,7 +692,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 }
             } else if (default_type_ == 102) {
                 Employer employer = new Employer(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, isValid_, 0, null, isChef_, default_type_, 0, employeur_);
+                        adresse_, 0, isValid_, 0, null, idGroup_, default_type_, isChef_, employeur_);
 
                 if (dbQueries.updateEmployer(employer, phone_)) {
                     //dbQueries.insertEmployer(employer);
@@ -677,7 +702,7 @@ public class EditAgriculteurs extends AppCompatActivity implements View.OnClickL
                 }
             } else if (default_type_ == 103) {
                 Entrepreneurs entrepreneurs = new Entrepreneurs(0, nom_, phone_, postnom_, gender_ ? "M" : "F", mots_de_passe_, mots_de_passe_conf_,
-                        adresse_, 0, isValid_, 0, null, 0, default_type_, isChef_, entreprise_);
+                        adresse_, 0, isValid_, 0, null, idGroup_, default_type_, isChef_, entreprise_);
 
                 if (dbQueries.updateEntrepreneur(entrepreneurs, phone_)) {
                     //dbQueries.insertEntrepreneur(entrepreneurs);

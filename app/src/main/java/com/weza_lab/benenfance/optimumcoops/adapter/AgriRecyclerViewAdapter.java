@@ -131,7 +131,7 @@ public class AgriRecyclerViewAdapter extends RecyclerView.Adapter<AgriRecyclerVi
         public boolean onLongClick(View view) {
             position = getAdapterPosition();
             view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-            Toast.makeText(mContext, "Delection comming soon ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Deletion coming soon ", Toast.LENGTH_SHORT).show();
 
 
             return true;

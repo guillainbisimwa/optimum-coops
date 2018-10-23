@@ -23,8 +23,7 @@ class DBConstants {
 
     //Deuxime table agriculteurs
     static final String TABLE_NAME_AGRICULTEURS = "agriculteurs";
-
-    static final String COLUMN_ID_AGRI = "id_agri";
+    static final String COLUMN_ID_AGRI = "_id";
     static final String COLUMN_NAME_AGRI = "name";
     static final String COLUMN_LAST_NAME_AGRI = "last_name_agri";
     static final String COLUMN_PHONE_AGRI = "phone_agri";
@@ -67,7 +66,7 @@ class DBConstants {
     //Troisieme table petit commercant
     static final String TABLE_NAME_PETIT_COM = "petit_commercant";
 
-    static final String COLUMN_ID_PETI_COM = "id_petit_com";
+    static final String COLUMN_ID_PETI_COM = "_id";
     static final String COLUMN_NAME_PETI_COM = "name_petit_com";
     static final String COLUMN_LAST_NAME_PETI_COM = "last_name_petit_com";
     static final String COLUMN_PHONE_PETI_COM = "phone_petit_com";
@@ -108,7 +107,7 @@ class DBConstants {
     //Quatrieme table employer
     static final String TABLE_NAME_EMPLOYER = "employer";
 
-    static final String COLUMN_ID_EMPLOYER = "id_emp";
+    static final String COLUMN_ID_EMPLOYER = "_id";
     static final String COLUMN_NAME_EMPLOYER = "name_emp";
     static final String COLUMN_LAST_NAME_EMPLOYER = "last_name_emp";
     static final String COLUMN_PHONE_EMPLOYER = "phone_emp";
@@ -149,7 +148,7 @@ class DBConstants {
     //Cinquieme table entrepreneur
     static final String TABLE_NAME_ENTREPRENEUR = "entrepreneur";
 
-    static final String COLUMN_ID_ENTREPRENEUR = "id_entre";
+    static final String COLUMN_ID_ENTREPRENEUR = "_id";
     static final String COLUMN_NAME_ENTREPRENEUR = "name_entre";
     static final String COLUMN_LAST_NAME_ENTREPRENEUR = "last_name_entre";
     static final String COLUMN_PHONE_ENTREPRENEUR = "phone_entre";
@@ -186,14 +185,33 @@ class DBConstants {
             COLUMN_IS_SYNC_ENTREPRENEUR + " INTEGER, " +
             COLUMN_IS_UPDATE_ENTREPRENEUR + " INTEGER " +
             " ); ";
+    /**
+     * GROUPE TABLE
+     **/
 
+    static final String TABLE_NAME_GROUP = "groups";
+
+    static final String COLUMN_ID_GROUP = "_id";
+    static final String COLUMN_NAME_GROUP = "name_group";
+    static final String COLUMN_ADRESS_GROUP = "adress_group";
+    static final String CONTACT_PHOTO_GROUP = "contact_photo_group";
+    static final String COLUMN_TYPE_GROUP = "type_group";
+
+
+    static final String CREATE_TABLE_GROUP = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_GROUP + " ( " +
+            COLUMN_ID_GROUP + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_NAME_GROUP + " TEXT, " +
+            COLUMN_ADRESS_GROUP + " TEXT, " +
+            CONTACT_PHOTO_GROUP + " BLOB DEFAULT NULL, " +
+            COLUMN_TYPE_GROUP + " INTEGER " +
+            " ); ";
     /**
      * CREDIT TABLE
      **/
 
     static final String TABLE_NAME_CREDIT = "credit";
 
-    static final String COLUMN_ID_CREDIT = "id_credit";
+    static final String COLUMN_ID_CREDIT = "_id";
     static final String COLUMN_SOMME_CREDIT = "somme_credit";
     static final String COLUMN_PHONE_USER_CREDIT = "phone_user_credit";
     static final String COLUMN_TYPE_USER_CREDIT = "type_user_credit";
@@ -227,7 +245,7 @@ class DBConstants {
 
     static final String TABLE_NAME_PAYMENT = "payment";
 
-    static final String COLUMN_ID_PAYMENT = "id_payment";
+    static final String COLUMN_ID_PAYMENT = "_id";
     static final String COLUMN_SOMME_PAYMENT = "somme_payment";
     static final String COLUMN_ID_CREDIT_PAYMENT = "id_credit_payment";
     static final String COLUMN_DATE_PAYMENT = "date_payment";
@@ -245,7 +263,7 @@ class DBConstants {
 
     static final String TABLE_NAME_TRANCHE = "tranche";
 
-    static final String COLUMN_ID_TRANCHE = "id_tranche";
+    static final String COLUMN_ID_TRANCHE = "_id";
     static final String COLUMN_SOMME_TRANCHE = "somme_tranche";
     static final String COLUMN_ID_CREDIT_TRANCHE = "id_credit_tranche";
     static final String COLUMN_DATE_TRANCHE = "date_tranche";
@@ -256,26 +274,7 @@ class DBConstants {
             COLUMN_ID_CREDIT_TRANCHE + " INTEGER, " +
             COLUMN_DATE_TRANCHE + " TEXT " +
             " ); ";
-    /**
-     * GROUPE TABLE
-     **/
 
-    static final String TABLE_NAME_GROUP = "groups";
-
-    static final String COLUMN_ID_GROUP = "_id";
-    static final String COLUMN_NAME_GROUP = "name_group";
-    static final String COLUMN_ADRESS_GROUP = "adress_group";
-    static final String CONTACT_PHOTO_GROUP = "contact_photo_group";
-    static final String COLUMN_TYPE_GROUP = "type_group";
-
-
-    static final String CREATE_TABLE_GROUP = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_GROUP + " ( " +
-            COLUMN_ID_GROUP + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COLUMN_NAME_GROUP + " TEXT, " +
-            COLUMN_ADRESS_GROUP + " TEXT, " +
-            CONTACT_PHOTO_GROUP + " BLOB DEFAULT NULL, " +
-            COLUMN_TYPE_GROUP + " INTEGER " +
-            " ); ";
 
     /**
      * LES REQUETES
@@ -294,8 +293,8 @@ class DBConstants {
     static final String SELECT_TRANCHE_QUERY = "SELECT * FROM " + TABLE_NAME_TRANCHE;
 
     static final String SELECT_GROUP_QUERY = "SELECT * FROM " + TABLE_NAME_GROUP;
-    static final String SELECT_GROUP_ID_QUERY = "SELECT " + COLUMN_ID_GROUP + " AS _id, " +
-            "" + COLUMN_NAME_GROUP + " FROM " + TABLE_NAME_GROUP;
+    static final String SELECT_GROUP_ID_QUERY = "SELECT " + COLUMN_ID_GROUP + " AS _id, "
+            + COLUMN_NAME_GROUP + " FROM " + TABLE_NAME_GROUP;
 
 
 }

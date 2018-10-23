@@ -58,6 +58,10 @@
             android:label="@string/app_name" />
 
         <activity
+            android:name=".group.Details_group.Details_group"
+            android:label="@string/app_name" />
+
+        <activity
             android:name=".group.Add_group"
             android:label="@string/app_name" />
 

@@ -24,10 +24,10 @@ import com.weza_lab.benenfance.optimumcoops.credit.Main_credit;
 import com.weza_lab.benenfance.optimumcoops.fragment.AchRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.CoopRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.DealRecyclerViewFragment;
-import com.weza_lab.benenfance.optimumcoops.fragment.GroupRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.PersRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.RecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.group.Add_group;
+import com.weza_lab.benenfance.optimumcoops.group.fragment.GroupRecyclerViewFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

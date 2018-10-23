@@ -19,8 +19,8 @@ import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.weza_lab.benenfance.optimumcoops.agri.addAgriculteurs;
 import com.weza_lab.benenfance.optimumcoops.agri.details_agri.DetailsAgriRecyclerViewFrgmnt;
-import com.weza_lab.benenfance.optimumcoops.fragment.GroupRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.RecyclerViewFragment;
+import com.weza_lab.benenfance.optimumcoops.group.fragment.GroupRecyclerViewFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
