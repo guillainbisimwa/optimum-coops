@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops.agri.sync;
+package com.weza_lab.benenfance.optimumcoops.personne.sync;
 
 
 import android.app.IntentService;

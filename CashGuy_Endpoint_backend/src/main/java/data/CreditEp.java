@@ -1,6 +1,15 @@
 package data;
 
+
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
+@Entity
+@Index
 public class CreditEp {
+    @Id
+    private Long id;
     private int id_credit;
     private long timestamp; //date
     private String hash;
@@ -16,6 +25,17 @@ public class CreditEp {
     private int duree;
 
     public CreditEp() {
+    }
+
+    public CreditEp(int id_credit, long timestamp, float somme_credit, String phone_user_credit, int type_user_credit, float taux_credit, String motif_credit, int duree) {
+        this.id_credit = id_credit;
+        this.timestamp = timestamp;
+        this.somme_credit = somme_credit;
+        this.phone_user_credit = phone_user_credit;
+        this.type_user_credit = type_user_credit;
+        this.taux_credit = taux_credit;
+        this.motif_credit = motif_credit;
+        this.duree = duree;
     }
 
     public CreditEp(int id_credit, long timestamp, String hash, String previous_hash, int nonce, float somme_credit, String phone_user_credit, int type_user_credit, int etat_credit, float taux_credit, String motif_credit, int duree) {
@@ -127,5 +147,13 @@ public class CreditEp {
 
     public void setDuree(int duree) {
         this.duree = duree;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

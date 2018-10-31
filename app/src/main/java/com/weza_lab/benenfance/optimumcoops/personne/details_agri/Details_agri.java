@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops.agri.details_agri;
+package com.weza_lab.benenfance.optimumcoops.personne.details_agri;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import android.view.View;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.weza_lab.benenfance.optimumcoops.R;
-import com.weza_lab.benenfance.optimumcoops.agri.EditAgriculteurs;
 import com.weza_lab.benenfance.optimumcoops.fragment.RecyclerViewFragment;
+import com.weza_lab.benenfance.optimumcoops.personne.EditAgriculteurs;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "496752653245",
+    "firebase_url": "https://optimumcoops-2.firebaseio.com",
+    "project_id": "optimumcoops-2",
+    "storage_bucket": "optimumcoops-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496752653245:android:a9c295534e5f8ec8",
+        "android_client_info": {
+          "package_name": "com.weza_lab.benenfance.optimumcoops"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "496752653245-p3dtilcfc4b7t59tf4hid9cgr649vrui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCscxqNq8qjI1WNbFqYoiHv2SyOBK9Ht8w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

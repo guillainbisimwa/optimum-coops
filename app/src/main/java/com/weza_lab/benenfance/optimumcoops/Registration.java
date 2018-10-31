@@ -526,6 +526,27 @@ public class Registration extends AppCompatActivity implements LoaderCallbacks<C
             domaine_layout.setVisibility(View.GONE);
             employeur_layout.setVisibility(View.GONE);
             entreprise_layout.setVisibility(View.VISIBLE);
+        } else if (a == 4) {
+            default_type_ = 104;
+            //achat 103
+            nom.setVisibility(View.VISIBLE);
+            postnom.setVisibility(View.VISIBLE);
+            phone.setVisibility(View.VISIBLE);
+            radio_layout.setVisibility(View.VISIBLE);
+            //spiner_layout_cour.setVisibility(View.VISIBLE);
+            /*gender_group.setVisibility(View.GOVISIBLE*/
+            /*radio_male.setVisibility(View.GOVISIBLE*/
+            /*radio_female.setVisibility(View.GOVISIBLE*/
+            mots_de_passe.setVisibility(View.VISIBLE);
+            mots_de_passe_conf.setVisibility(View.VISIBLE);
+            adresse.setVisibility(View.VISIBLE);
+            bottom_layout.setVisibility(View.VISIBLE);
+
+            plantation_layout.setVisibility(View.GONE);
+            //invisibles
+            domaine_layout.setVisibility(View.GONE);
+            employeur_layout.setVisibility(View.GONE);
+            //entreprise_layout.setVisibility(View.VISIBLE);
         } else {
             Toast.makeText(getApplicationContext(),
                     "Operation non permise!",

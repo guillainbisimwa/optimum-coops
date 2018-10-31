@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops.agri;
+package com.weza_lab.benenfance.optimumcoops.personne;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -28,6 +28,7 @@ import com.weza_lab.benenfance.optimumcoops.MainActivity;
 import com.weza_lab.benenfance.optimumcoops.R;
 import com.weza_lab.benenfance.optimumcoops.database.DBHelper;
 import com.weza_lab.benenfance.optimumcoops.database.DBQueries;
+import com.weza_lab.benenfance.optimumcoops.personne.sync.SyncPersonneBackground;
 import com.weza_lab.benenfance.optimumcoops.pojo.Agriculteurs;
 import com.weza_lab.benenfance.optimumcoops.pojo.Employer;
 import com.weza_lab.benenfance.optimumcoops.pojo.Entrepreneurs;
@@ -555,7 +556,15 @@ public class addAgriculteurs extends AppCompatActivity implements AdapterView.On
             showProgress(false);
 
             if (success) {
-                Toast.makeText(getApplicationContext(), "ENREGISTREMENT AVEC SUCCESS", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "ENREGISTREMENT AVEC SUCCESS ", Toast.LENGTH_SHORT).show();
+                /**
+                 * Ici on synchronise l'utilisateur recenment enregistrer
+                 * **/
+                Intent intent = new Intent(getApplicationContext(), SyncPersonneBackground.class);
+                intent.putExtra("mPhone", phone_);
+                startService(intent);
+
+
                 finish();
 
                 //shared preference

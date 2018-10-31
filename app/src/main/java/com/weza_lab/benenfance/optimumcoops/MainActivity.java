@@ -17,10 +17,9 @@ import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
-import com.weza_lab.benenfance.optimumcoops.agri.EditAgriculteurs;
-import com.weza_lab.benenfance.optimumcoops.agri.addAgriculteurs;
-import com.weza_lab.benenfance.optimumcoops.agri.details_agri.DetailsAgriRecyclerViewFrgmnt;
 import com.weza_lab.benenfance.optimumcoops.credit.Main_credit;
+import com.weza_lab.benenfance.optimumcoops.events.SaveDataEvent;
+import com.weza_lab.benenfance.optimumcoops.events.SyncDataEvent;
 import com.weza_lab.benenfance.optimumcoops.fragment.AchRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.CoopRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.DealRecyclerViewFragment;
@@ -28,6 +27,13 @@ import com.weza_lab.benenfance.optimumcoops.fragment.PersRecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.fragment.RecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.group.Add_group;
 import com.weza_lab.benenfance.optimumcoops.group.fragment.GroupRecyclerViewFragment;
+import com.weza_lab.benenfance.optimumcoops.personne.EditAgriculteurs;
+import com.weza_lab.benenfance.optimumcoops.personne.addAgriculteurs;
+import com.weza_lab.benenfance.optimumcoops.personne.details_agri.DetailsAgriRecyclerViewFrgmnt;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +53,8 @@ public class MainActivity extends DrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
+
+        EventBus.getDefault().register(this);
 
         //Categorize all users
         SharedPreferences prefs = getApplicationContext().getSharedPreferences(getResources().getString(R.string.application_key),
@@ -141,7 +149,8 @@ public class MainActivity extends DrawerActivity {
                 } else if ((user_categorie == 100) || (user_categorie == 101) || (user_categorie == 102) || ((user_categorie == 103))) {
                     switch (position % 5) {
                         case 0:
-                            return uName + "(" + user_categorie + ")";
+                            return uName;
+                        //return uName + "(" + user_categorie + ")";
                         //return getString(R.string.agriculteur);
                         case 1:
                             return getString(R.string.groupe);
@@ -318,6 +327,26 @@ public class MainActivity extends DrawerActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSaveDataEvent(SaveDataEvent saveDataEvent) {
+        if (saveDataEvent.isSuccess()) {
+            Toast.makeText(getApplicationContext(), saveDataEvent.getMessage(), Toast.LENGTH_SHORT).show();
+            onSupportNavigateUp();
+        } else {
+            Toast.makeText(this, saveDataEvent.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSyncDataEvent(SyncDataEvent syncDataEvent) {
+        if (syncDataEvent.isSuccess()) {
+            Toast.makeText(this, syncDataEvent.getMessage(), Toast.LENGTH_SHORT).show();
+            onSupportNavigateUp();
+        } else {
+            Toast.makeText(this, syncDataEvent.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

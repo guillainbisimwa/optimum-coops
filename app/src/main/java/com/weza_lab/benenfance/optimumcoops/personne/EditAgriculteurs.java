@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops.agri;
+package com.weza_lab.benenfance.optimumcoops.personne;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

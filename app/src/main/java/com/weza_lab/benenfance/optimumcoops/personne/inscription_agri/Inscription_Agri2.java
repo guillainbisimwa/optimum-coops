@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops.agri.inscription_agri;
+package com.weza_lab.benenfance.optimumcoops.personne.inscription_agri;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

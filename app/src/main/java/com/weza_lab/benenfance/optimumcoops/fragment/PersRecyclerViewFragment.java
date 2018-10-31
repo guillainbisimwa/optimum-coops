@@ -20,6 +20,7 @@ import com.weza_lab.benenfance.optimumcoops.adapter.PersRecyclerViewAdapter;
 import com.weza_lab.benenfance.optimumcoops.database.DBHelper;
 import com.weza_lab.benenfance.optimumcoops.database.DBQueries;
 import com.weza_lab.benenfance.optimumcoops.pojo.Personnes;
+import com.weza_lab.benenfance.optimumcoops.utils.Utils;
 
 import java.util.List;
 
@@ -72,10 +73,7 @@ public class PersRecyclerViewFragment extends Fragment implements SwipeRefreshLa
         ButterKnife.bind(this, view);
 
         personnes = new Personnes();
-
-
         //swipeRefreshLayout.setOnRefreshListener(this);
-
 
         dbQueries.open();
         items = dbQueries.readPersonnes();
@@ -99,24 +97,37 @@ public class PersRecyclerViewFragment extends Fragment implements SwipeRefreshLa
         //Use this now
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
         mRecyclerView.setAdapter(new PersRecyclerViewAdapter(items, getContext()));
-
-
     }
 
     @Override
     public void onRefresh() {
-        Toast.makeText(getContext(), getResources().getString(R.string.connectivity_error), Toast.LENGTH_LONG).show();
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
+        //sync if network available
+        if (Utils.isNetworkAvailable(getContext())) {
+            swipeRefreshLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    dbQueries.open();
+                    items = dbQueries.readPersonnes();
+                    dbQueries.close();
+                    mRecyclerView.setAdapter(new PersRecyclerViewAdapter(items, getContext()));
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        } else {
+            //schedule a job if not network is available
+            Toast.makeText(getContext(), getResources().getString(R.string.connectivity_error), Toast.LENGTH_LONG).show();
+            swipeRefreshLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    dbQueries.open();
+                    items = dbQueries.readPersonnes();
+                    dbQueries.close();
+                    mRecyclerView.setAdapter(new PersRecyclerViewAdapter(items, getContext()));
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
+        // Toast.makeText(getContext(), getResources().getString(R.string.connectivity_error), Toast.LENGTH_LONG).show();
 
-                dbQueries.open();
-                items = dbQueries.readPersonnes();
-                dbQueries.close();
-
-                mRecyclerView.setAdapter(new PersRecyclerViewAdapter(items, getContext()));
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
     }
 }

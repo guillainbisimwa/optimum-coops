@@ -17,10 +17,10 @@ import android.widget.Toast;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
-import com.weza_lab.benenfance.optimumcoops.agri.addAgriculteurs;
-import com.weza_lab.benenfance.optimumcoops.agri.details_agri.DetailsAgriRecyclerViewFrgmnt;
 import com.weza_lab.benenfance.optimumcoops.fragment.RecyclerViewFragment;
 import com.weza_lab.benenfance.optimumcoops.group.fragment.GroupRecyclerViewFragment;
+import com.weza_lab.benenfance.optimumcoops.personne.addAgriculteurs;
+import com.weza_lab.benenfance.optimumcoops.personne.details_agri.DetailsAgriRecyclerViewFrgmnt;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

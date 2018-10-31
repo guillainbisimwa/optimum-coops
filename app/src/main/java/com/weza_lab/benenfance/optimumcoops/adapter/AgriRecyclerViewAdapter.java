@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weza_lab.benenfance.optimumcoops.R;
-import com.weza_lab.benenfance.optimumcoops.agri.details_agri.Details_agri;
+import com.weza_lab.benenfance.optimumcoops.personne.details_agri.Details_agri;
 import com.weza_lab.benenfance.optimumcoops.pojo.Agriculteurs;
 
 import java.util.List;

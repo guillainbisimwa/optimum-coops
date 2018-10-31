@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weza_lab.benenfance.optimumcoops.R;
-import com.weza_lab.benenfance.optimumcoops.agri.details_agri.Details_agri;
+import com.weza_lab.benenfance.optimumcoops.personne.details_agri.Details_agri;
 import com.weza_lab.benenfance.optimumcoops.pojo.Personnes;
 
 import java.util.List;
@@ -86,7 +86,7 @@ public class PersRecyclerViewAdapter extends RecyclerView.Adapter<PersRecyclerVi
         else if (a.getDefault_type() == 103)
             holder.mType.setText("Entrepreneur");
 
-        if (a.getIs_validate_a() == 1) {
+        if (a.getIs_validate_a() == 1 && a.getIs_sync_a() == 1) {
             holder.stateImage.setImageResource(R.drawable.ic_lock_open_black_24dp);
             holder.mType.setTextColor(R.color.green);
         } else {

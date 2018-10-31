@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops.agri;
+package com.weza_lab.benenfance.optimumcoops.personne;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

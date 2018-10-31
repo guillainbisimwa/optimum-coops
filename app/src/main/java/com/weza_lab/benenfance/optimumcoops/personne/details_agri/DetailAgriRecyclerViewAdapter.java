@@ -1,4 +1,4 @@
-package com.weza_lab.benenfance.optimumcoops.agri.details_agri;
+package com.weza_lab.benenfance.optimumcoops.personne.details_agri;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

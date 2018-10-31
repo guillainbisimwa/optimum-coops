@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 import javax.inject.Named;
 
+import data.CreditEp;
 import data.GroupsEp;
 import data.PersonnesEp;
 
@@ -214,7 +215,104 @@ public class OptimumCoopsEndpoint {
         return CollectionResponse.<GroupsEp>builder().setItems(records).setNextPageToken(cursorString).build();
     }
     //TODO liste Groupe tri
+    /*int id_credit, long timestamp, String hash, String previous_hash, int nonce, float somme_credit,
+     String phone_user_credit, int type_user_credit, int etat_credit, float taux_credit, String motif_credit, int duree) {
+     */
+    //TODO enregistrer credit
+    @ApiMethod(name = "enregistrerCredit")
+    public CreditEp enregistrerCredit(
+            @Named("id_credit") int id_credit,
+            @Named("timestamp_credit") long timestamp,
+            @Named("somme_credit") float somme_credit,
+            @Named("phone_user_credit") String phone_user_credit,
+            @Named("type_user_credit") int type_user_credit,
+            @Named("taux_credit") float taux_credit,
+            @Named("motif_credit") String motif_credit,
+            @Named("duree_credit") int duree_credit
 
+    ) throws ConflictException {
+        //If if is not null, then check if it exists. If yes, throw an Exception
+        //that it is already present
+        CreditEp creditEp = new CreditEp(id_credit,
+                timestamp,
+                somme_credit,
+                phone_user_credit,
+                type_user_credit,
+                taux_credit,
+                motif_credit,
+                duree_credit
+                );
+        if (creditEp.getId() != null) {
+            if (findRecord_credits(creditEp.getId()) != null) {
+                throw new ConflictException("Object already exists");
+            }
+        }
+        //Since our @Id field is a Long, Objectify will generate a unique value for us
+        //when we use put
+        //call tranche's method
+
+        ofy().save().entity(creditEp).now();
+        return creditEp;
+    }
+
+    @ApiMethod(name = "enregistrerCreditsClass")
+    public CreditEp enregistrerCreditsClass(CreditEp creditEp) throws ConflictException {
+        //If if is not null, then check if it exists. If yes, throw an Exception
+        //that it is already present
+        if (creditEp.getId() != null) {
+            if (findRecord_credits(creditEp.getId()) != null) {
+                throw new ConflictException("Object already exists");
+            }
+        }
+        //Since our @Id field is a Long, Objectify will generate a unique value for us
+        //when we use put
+        ofy().save().entity(creditEp).now();
+        return creditEp;
+    }
+
+    //TODO liste credit all
+    @ApiMethod(name = "listCredits")
+    public CollectionResponse<CreditEp> listCredit(@Nullable @Named("cursor") String cursorString,
+                                                    @Nullable @Named("count") Integer count) {
+
+        Query<CreditEp> query = ofy().load().type(CreditEp.class);
+        if (count != null) query.limit(count);
+        if (cursorString != null && cursorString != "") {
+            query = query.startAt(Cursor.fromWebSafeString(cursorString));
+        }
+
+        List<CreditEp> records = new ArrayList<CreditEp>();
+        QueryResultIterator<CreditEp> iterator = query.iterator();
+        int num = 0;
+        while (iterator.hasNext()) {
+            records.add(iterator.next());
+            if (count != null) {
+                num++;
+                if (num == count) break;
+            }
+        }
+
+        //Find the next cursor
+        if (cursorString != null && cursorString != "") {
+            Cursor cursor = iterator.getCursor();
+            if (cursor != null) {
+                cursorString = cursor.toWebSafeString();
+            }
+        }
+        return CollectionResponse.<CreditEp>builder().setItems(records).setNextPageToken(cursorString).build();
+    }
+    //TODO liste Credit tri
+
+
+    //TODO login
+    @ApiMethod(name = "return_Personne_byID")
+    public PersonnesEp return_Personne_byID(@Named("phone") String phone ) throws ConflictException {
+
+        //List<Abonnees> abonne = ofy().load().type(Abonnees.class).filter("id_a =",id_a).list();
+        List<PersonnesEp> personnesEps = ofy().load().type(PersonnesEp.class).filter("phone_a =",phone).list();
+        PersonnesEp a = personnesEps.get(0);
+        return a;
+    }
 
     private PersonnesEp findRecord_personnes(Long id) {
         return ofy().load().type(PersonnesEp.class).id(id).now();
@@ -224,5 +322,8 @@ public class OptimumCoopsEndpoint {
         return ofy().load().type(GroupsEp.class).id(id).now();
     }
 
+    private CreditEp findRecord_credits(Long id) {
+        return ofy().load().type(CreditEp.class).id(id).now();
+    }
 }
 
