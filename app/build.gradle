@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+// V2: Apply the new Endpoints Framework client plugin
+apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 
 android {
     compileSdkVersion 28
@@ -28,6 +30,18 @@ android {
         }
     }
 }
+
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        // V2: Add the new Endpoints Framework plugin dependencies
+        classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
+    }
+}
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -81,6 +95,15 @@ dependencies {
     //implementation 'com.google.api-client:google-api-client:1.25.0'
     //implementation('com.google.api-client:google-api-client-android:1.23.0')
     //implementation 'com.google.firebase:firebase-core:16.0.1'
+    // V2: Endpoints Framework v2 migration
+    endpointsServer project(path: ':backend', configuration: 'endpoints')
+    implementation 'com.google.api-client:google-api-client:+'
+    implementation 'com.google.http-client:google-http-client-android:1.22.0'
     implementation project(':materialviewpager')
+/**
+ * BEGIN ENDPOINT FRAMEWORK
+**/
+
+
 }
 //apply plugin: 'com.google.gms.google-services'
